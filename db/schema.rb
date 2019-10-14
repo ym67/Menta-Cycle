@@ -10,19 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_010412) do
+ActiveRecord::Schema.define(version: 2019_10_14_021059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "big5_scores", force: :cascade do |t|
-    t.integer "neuroticism", default: 4, null: false
-    t.integer "extraversion", default: 4, null: false
-    t.integer "openness_to_experience", default: 4, null: false
-    t.integer "agreeableness", default: 4, null: false
-    t.integer "conscientiousness", default: 4, null: false
+    t.integer "q1", default: 4, null: false
+    t.integer "q2", default: 4, null: false
+    t.integer "q3", default: 4, null: false
+    t.integer "q4", default: 4, null: false
+    t.integer "q5", default: 4, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "q6", default: 4, null: false
+    t.integer "q7", default: 4, null: false
+    t.integer "q8", default: 4, null: false
+    t.integer "q9", default: 4, null: false
+    t.integer "q10", default: 4, null: false
   end
 
 end
