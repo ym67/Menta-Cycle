@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<canvas id="myRaderChart"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+<script>
+var ctx = document.getElementById("myRaderChart");
+var myRadarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+        labels: ["情緒安定性", "外向性", "開放性", "協調性", "誠実性"],
+        datasets: [{
+            label: '診断結果',
+            data: [<%= @big5_score.q4 + @big5_score.q9 %>, <%= @big5_score.q1 + @big5_score.q6 %>, <%= @big5_score.q5 + @big5_score.q10 %>, <%= @big5_score.q2 + @big5_score.q7 %>, <%= @big5_score.q3 + @big5_score.q8 %>],
+            backgroundColor: 'RGBA(225,95,150, 0.5)',
+            borderColor: 'RGBA(225,95,150, 1)',
+            borderWidth: 1,
+            pointBackgroundColor: 'RGB(46,106,177)'
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            text: 'Big5'
+        },
+        scale:{
+            ticks:{
+                suggestedMin: 0,
+                suggestedMax: 10,
+                stepSize: 1,
+                callback: function(value, index, values){
+                    return  value
+                }
+            }
+        }
+    }
+});
+</script>
+
+<p>
+  <strong>情緒安定性:</strong>
+  <%= @big5_score.q4 + @big5_score.q9 %>
+</p>
+
+<p>
+  <strong>外向性:</strong>
+  <%= @big5_score.q1 + @big5_score.q6 %>
+</p>
+
+<p>
+  <strong>開放性:</strong>
+  <%= @big5_score.q5 + @big5_score.q10 %>
+</p>
+
+<p>
+  <strong>協調性:</strong>
+  <%= @big5_score.q2 + @big5_score.q7 %>
+</p>
+
+<p>
+  <strong>誠実性:</strong>
+  <%= @big5_score.q3 + @big5_score.q8 %>
+</p>
+
+
+<%= link_to '編集', edit_big5_score_path(@big5_score) %> |
+<%= link_to '戻る', big5_scores_path %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>

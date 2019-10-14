@@ -1,0 +1,153 @@
+<%= form_with(model: big5_score, local: true) do |form| %>
+
+  <% if big5_score.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(big5_score.errors.count, "件") %>のエラーがあります</h2>
+
+      <ul>
+      <% big5_score.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <strong>1:全く当てはまらない〜7:完全に当てはまる</strong>
+
+  <br>
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q1 %>. 私は、初めての人に会うのが好きで、会話をするのが好きで、人と会うのを楽しめる人間だ。</strong>
+    <label><%= form.radio_button :q1, 1 %>1</label>
+    <label><%= form.radio_button :q1, 2 %>2</label>
+    <label><%= form.radio_button :q1, 3 %>3</label>
+    <label><%= form.radio_button :q1, 4 %>4</label>
+    <label><%= form.radio_button :q1, 5 %>5</label>
+    <label><%= form.radio_button :q1, 6 %>6</label>
+    <label><%= form.radio_button :q1, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q2 %>. 私は、人に対して思いやりがあり、その思いやりを行動に移し、他人を差別しない人間だ。</strong>
+    <label><%= form.radio_button :q2, 1 %>1</label>
+    <label><%= form.radio_button :q2, 2 %>2</label>
+    <label><%= form.radio_button :q2, 3 %>3</label>
+    <label><%= form.radio_button :q2, 4 %>4</label>
+    <label><%= form.radio_button :q2, 5 %>5</label>
+    <label><%= form.radio_button :q2, 6 %>6</label>
+    <label><%= form.radio_button :q2, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q3 %>. 私は、きっちりと物事をこなし、手際よく行動し、適切に物事を行おうとする人間だ。</strong>
+    <label><%= form.radio_button :q3, 1 %>1</label>
+    <label><%= form.radio_button :q3, 2 %>2</label>
+    <label><%= form.radio_button :q3, 3 %>3</label>
+    <label><%= form.radio_button :q3, 4 %>4</label>
+    <label><%= form.radio_button :q3, 5 %>5</label>
+    <label><%= form.radio_button :q3, 6 %>6</label>
+    <label><%= form.radio_button :q3, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q4 %>. 私は、いつも心配事が多く、不安になりやすく、気分の浮き沈みが多い人間だ。</strong>
+    <label><%= form.radio_button :q4, 1 %>1</label>
+    <label><%= form.radio_button :q4, 2 %>2</label>
+    <label><%= form.radio_button :q4, 3 %>3</label>
+    <label><%= form.radio_button :q4, 4 %>4</label>
+    <label><%= form.radio_button :q4, 5 %>5</label>
+    <label><%= form.radio_button :q4, 6 %>6</label>
+    <label><%= form.radio_button :q4, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q5 %>. 私は、知的な活動が得意で、創造性が高くて好奇心があり、新たなことを探求する人間だ。</strong>
+    <label><%= form.radio_button :q5, 1 %>1</label>
+    <label><%= form.radio_button :q5, 2 %>2</label>
+    <label><%= form.radio_button :q5, 3 %>3</label>
+    <label><%= form.radio_button :q5, 4 %>4</label>
+    <label><%= form.radio_button :q5, 5 %>5</label>
+    <label><%= form.radio_button :q5, 6 %>6</label>
+    <label><%= form.radio_button :q5, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q6 %>. 私は、恥ずかしがり屋で、物静かで、人が多いパーティなどは苦手な人間だ。</strong>
+    <label><%= form.radio_button :q6, 1 %>1</label>
+    <label><%= form.radio_button :q6, 2 %>2</label>
+    <label><%= form.radio_button :q6, 3 %>3</label>
+    <label><%= form.radio_button :q6, 4 %>4</label>
+    <label><%= form.radio_button :q6, 5 %>5</label>
+    <label><%= form.radio_button :q6, 6 %>6</label>
+    <label><%= form.radio_button :q6, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q7 %>. 私は、すぐ思ったことを口にし、冷淡な面があり、他人に同情を感じることはめったにない人間だ。</strong>
+    <label><%= form.radio_button :q7, 1 %>1</label>
+    <label><%= form.radio_button :q7, 2 %>2</label>
+    <label><%= form.radio_button :q7, 3 %>3</label>
+    <label><%= form.radio_button :q7, 4 %>4</label>
+    <label><%= form.radio_button :q7, 5 %>5</label>
+    <label><%= form.radio_button :q7, 6 %>6</label>
+    <label><%= form.radio_button :q7, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q8 %>. 私は、あまり考えずに行動し、さほどきっちりは行動せず、ギリギリまで物事に手を付けない人間だ。</strong>
+    <label><%= form.radio_button :q8, 1 %>1</label>
+    <label><%= form.radio_button :q8, 2 %>2</label>
+    <label><%= form.radio_button :q8, 3 %>3</label>
+    <label><%= form.radio_button :q8, 4 %>4</label>
+    <label><%= form.radio_button :q8, 5 %>5</label>
+    <label><%= form.radio_button :q8, 6 %>6</label>
+    <label><%= form.radio_button :q8, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q9 %>. 私は、たいていリラックスしており、落ち着きがあり、めったに問題について悩まない人間だ。</strong>
+    <label><%= form.radio_button :q9, 1 %>1</label>
+    <label><%= form.radio_button :q9, 2 %>2</label>
+    <label><%= form.radio_button :q9, 3 %>3</label>
+    <label><%= form.radio_button :q9, 4 %>4</label>
+    <label><%= form.radio_button :q9, 5 %>5</label>
+    <label><%= form.radio_button :q9, 6 %>6</label>
+    <label><%= form.radio_button :q9, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <strong><%= form.label :q10 %>. 私は、物事を現実的に考え、伝統的な考え方を好み、めったに空想などで時間を浪費しない人間だ。</strong>
+    <label><%= form.radio_button :q10, 1 %>1</label>
+    <label><%= form.radio_button :q10, 2 %>2</label>
+    <label><%= form.radio_button :q10, 3 %>3</label>
+    <label><%= form.radio_button :q10, 4 %>4</label>
+    <label><%= form.radio_button :q10, 5 %>5</label>
+    <label><%= form.radio_button :q10, 6 %>6</label>
+    <label><%= form.radio_button :q10, 7 %>7</label>
+  </div>
+
+  <br>
+
+  <div class="actions">
+    <%= form.submit value: "診断" %>
+  </div>
+<% end %>

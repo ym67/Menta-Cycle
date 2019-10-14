@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Big5診断</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>情緒安定性</th>
+      <th>外向性</th>
+      <th>開放性</th>
+      <th>協調性</th>
+      <th>誠実性</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @big5_scores.each do |big5_score| %>
+      <tr>
+        <td><%= big5_score.q4 + big5_score.q9 %></td>
+        <td><%= big5_score.q1 + big5_score.q6 %></td>
+        <td><%= big5_score.q5 + big5_score.q10 %></td>
+        <td><%= big5_score.q2 + big5_score.q7 %></td>
+        <td><%= big5_score.q3 + big5_score.q8 %></td>
+        <td><%= link_to '詳細', big5_score %></td>
+        <td><%= link_to '編集', edit_big5_score_path(big5_score) %></td>
+        <td><%= link_to '削除', big5_score, method: :delete, data: { confirm: '削除します' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Big5診断', new_big5_score_path %>

@@ -1,7 +1,12 @@
 class Big5Score < ApplicationRecord
-  validates :neuroticism, length: { is: 1 }
-  validates :extraversion, length: { is: 1 }
-  validates :openness_to_experience, length: { is: 1 }
-  validates :agreeableness, length: { is: 1 }
-  validates :conscientiousness, length: { is: 1 }
+  validates :q1,  presence: true
+  validates :q2,  presence: true
+  validates :q3,  presence: true
+  validates :q4,  presence: true
+  validates :q5,  presence: true
+  validates :q6,  presence: true
+  validates :q7,  presence: true
+  validates :q8,  presence: true
+  validates :q9,  presence: true
+  validates :q10, presence: true
 end
