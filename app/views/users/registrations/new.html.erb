@@ -1,0 +1,45 @@
+<h2>アカウント作成</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= form.label :name %><br />
+    <%= form.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザ名" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %><br />
+    <label><%= form.radio_button :gender, true %>男性</label>
+    <label><%= form.radio_button :gender, false %>女性</label>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %><br />
+    <%= form.select :age, [["10代", 10], ["20代", 20], ["30代", 30], ["40代", 40], ["50代", 50], ["60代", 60], ["70代", 70], ["80代", 80], ["90代", 90]] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %><br />
+    <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "address@example.com" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <% if @minimum_password_length %>
+    (<%= @minimum_password_length %>文字以上)
+    <% end %><br />
+    <%= form.password_field :password, autocomplete: "new-password", placeholder: "6文字以上" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %><br />
+    <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上(確認)" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "送信" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>

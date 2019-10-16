@@ -1,5 +1,6 @@
 class Big5ScoresController < ApplicationController
   before_action :set_big5_score, only: [:show, :edit, :update, :destroy]
+  # before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
     @big5_scores = Big5Score.all

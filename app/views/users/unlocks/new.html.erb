@@ -1,0 +1,16 @@
+<h2>アカウントロック解除の案内を再送する</h2>
+
+<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |form| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= form.label :email %><br />
+    <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "address@example.com" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "再送する" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
