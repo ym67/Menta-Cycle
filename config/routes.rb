@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users,
     controllers: {
       sessions: "users/sessions",
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
 
   root 'big5_scores#index'
 
+  resources :users
   resources :big5_scores
 
   if Rails.env.development?
