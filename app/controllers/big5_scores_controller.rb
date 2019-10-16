@@ -17,8 +17,7 @@ class Big5ScoresController < ApplicationController
   end
 
   def create
-    @big5_score = Big5Score.new(big5_score_params)
-
+    @big5_score = current_user.big5_scores.build(big5_score_params)
     if @big5_score.save
       redirect_to @big5_score, notice: '診断終了'
     else

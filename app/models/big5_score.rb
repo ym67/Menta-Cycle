@@ -9,4 +9,6 @@ class Big5Score < ApplicationRecord
   validates :q8,  presence: true
   validates :q9,  presence: true
   validates :q10, presence: true
+
+  belongs_to :user
 end
