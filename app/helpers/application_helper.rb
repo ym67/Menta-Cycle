@@ -1,7 +1,7 @@
 module ApplicationHelper
   # 前回のBig5レコード
   def last_time_big5_score
-    if user_signed_in?
+    if user_signed_in? && Big5Score.where(user_id: current_user.id).length >= 2
       @last_time_big5_score = Big5Score.where(user_id: current_user.id).first
       # 項目別スコア
       ## 誠実性
@@ -14,12 +14,22 @@ module ApplicationHelper
       @last_time_openness_to_experience = (@last_time_big5_score.q5 + (8 - @last_time_big5_score.q10).to_f) / 2
       ## 外向性
       @last_time_extraversion           = (@last_time_big5_score.q1 + (8 - @last_time_big5_score.q6 ).to_f) / 2
+    else
+      @last_time_conscientiousness      = 0
+      ## 協調性
+      @last_time_agreeableness          = 0
+      ## 情緒安定性
+      @last_time_neuroticism            = 0
+      ## 開放性
+      @last_time_openness_to_experience = 0
+      ## 外向性
+      @last_time_extraversion           = 0
     end
   end
 
   # 今回のBig5レコード
   def this_time_big5_score
-    if user_signed_in?
+    if user_signed_in? && Big5Score.where(user_id: current_user.id).length  >= 1
       @this_time_big5_score = Big5Score.where(user_id: current_user.id).last
       # 項目別スコア
       ## 誠実性
@@ -32,6 +42,16 @@ module ApplicationHelper
       @this_time_openness_to_experience = (@this_time_big5_score.q5 + (8 - @this_time_big5_score.q10).to_f) / 2
       ## 外向性
       @this_time_extraversion           = (@this_time_big5_score.q1 + (8 - @this_time_big5_score.q6 ).to_f) / 2
+    else
+      @last_time_conscientiousness      = 0
+      ## 協調性
+      @last_time_agreeableness          = 0
+      ## 情緒安定性
+      @last_time_neuroticism            = 0
+      ## 開放性
+      @last_time_openness_to_experience = 0
+      ## 外向性
+      @last_time_extraversion           = 0
     end
   end
 end
