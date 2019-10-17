@@ -1,4 +1,5 @@
 class Big5Score < ApplicationRecord
+  # --- バリデーション ---
   validates :q1,  presence: true
   validates :q2,  presence: true
   validates :q3,  presence: true
@@ -10,5 +11,6 @@ class Big5Score < ApplicationRecord
   validates :q9,  presence: true
   validates :q10, presence: true
 
+  # --- アソシエーション ---
   belongs_to :user
 end
