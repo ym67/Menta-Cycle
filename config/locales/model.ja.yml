@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        name: "名前"
+        gender: "性別"
+        age: "年代"
+        email: "メールアドレス"
+        current_password: "現在のパスワード"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        remember_me: "ログインを記憶する"

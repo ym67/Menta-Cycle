@@ -1,3 +1,10 @@
+<h2>マイページ</h2>
+<p>アカウント名:<%= current_user.name %></p>
+<p>メールアドレス:<%= current_user.email %></p>
+<p>パスワード:<%= current_user.password %></p>
+
+<%= link_to '編集', edit_user_registration_path(current_user) %>
+
 <canvas id="myRaderChart"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
@@ -15,7 +22,6 @@ var myRadarChart = new Chart(ctx, {
             borderWidth: 2,
             pointBackgroundColor: 'RGB(46,106,177)'
         },
-        <% if @last_time_big5_score != @this_time_big5_score %>
         {
             label: '前回',
             data: [<%= @last_time_conscientiousness %>, <%= @last_time_agreeableness %>, <%= @last_time_neuroticism %>, <%= @last_time_openness_to_experience %>, <%= @last_time_extraversion %>],
@@ -23,9 +29,7 @@ var myRadarChart = new Chart(ctx, {
             borderColor: 'RGBA(115,255,25, 1)',
             borderWidth: 2,
             pointBackgroundColor: 'RGB(46,106,177)'
-        }
-        <% end %>
-        ]
+        }]
     },
     options: {
         title: {
@@ -46,33 +50,8 @@ var myRadarChart = new Chart(ctx, {
 });
 </script>
 
-<p>
-  <strong>誠実性:</strong>
-  <%= @this_time_conscientiousness %>
-</p>
-
-<p>
-  <strong>協調性:</strong>
-  <%= @this_time_agreeableness %>
-</p>
-
-<p>
-  <strong>情緒安定性:</strong>
-  <%= @this_time_neuroticism %>
-</p>
-
-<p>
-  <strong>開放性:</strong>
-  <%= @this_time_openness_to_experience %>
-</p>
-
-<p>
-  <strong>外向性:</strong>
-  <%= @this_time_extraversion %>
-</p>
-
-
-<%= link_to '編集', edit_big5_score_path(@big5_score) %> |
-<%= link_to '戻る', big5_scores_path %>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+
+
+<%= link_to 'Big5診断', new_big5_score_path %>
