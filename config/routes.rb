@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'users#show'
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   devise_for :users,
     controllers: {
       # confirmations:      "users/confirmations",
@@ -14,5 +17,4 @@ Rails.application.routes.draw do
   resources :users
   resources :big5_scores
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
