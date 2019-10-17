@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
-  get 'users/show'
+  root 'users#show'
+
   devise_for :users,
     controllers: {
-      sessions: "users/sessions",
-      registrations: "users/registrations",
-      passwords: "users/passwords",
-      # omniauth_callbacks: "users/omniauth_callbacks"
+      # confirmations:      "users/confirmations",
+      # omniauth_callbacks: "users/omniauth_callbacks",
+      passwords:          "users/passwords",
+      registrations:      "users/registrations",
+      sessions:           "users/sessions",
+      # unlocks:            "users/unlocks"
     }
-
-  root 'big5_scores#index'
 
   resources :users
   resources :big5_scores
 
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

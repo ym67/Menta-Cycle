@@ -14,11 +14,16 @@
 
       <header id="header">
         <!-- ヘッダーメニュー -->
-        <%= link_to "Menta Cycle", big5_scores_path %>
         <% if user_signed_in? %>
-          <li><%= link_to "#{current_user.name}(ID:#{current_user.id})", user_path(current_user.id) %></li>
+          <%= link_to "Menta Cycle", user_path(current_user.id) %>
+          <% if current_user.try(:admin?) %>
+            <li><%= link_to "★#{current_user.name}(ID:#{current_user.id})", user_path(current_user.id) %></li>
+          <% else %>
+            <li><%= link_to "#{current_user.name}(ID:#{current_user.id})", user_path(current_user.id) %></li>
+          <% end %>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
         <% else %>
+          <%= link_to "Menta Cycle", new_user_session_path %>
           <li><%= link_to 'ログイン', new_user_session_path %></li>
           <li><%= link_to '新規登録', new_user_registration_path %></li>
         <% end %>
