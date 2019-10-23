@@ -1,0 +1,47 @@
+<h1>
+  <%= @date %>のデータ
+</h1>
+
+<% if @dailry_stress_diaries != [] %>
+
+<h2><%= @date %>のストレスダイアリー</h2>
+<%= link_to '全て表示', stress_diaries_path %>
+
+<table border="1" align="center" valign="midle">
+  <thead>
+    <tr>
+      <th>時間</th>
+      <th>ストレス度</th>
+      <th>持続時間</th>
+      <th>状況</th>
+      <th>きっかけ</th>
+      <th>リアクション</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dailry_stress_diaries.each do |stress_diary| %>
+      <tr>
+        <% if stress_diary.time.strftime("%M") == "00" %>
+          <td><%= stress_diary.time.strftime("%H時頃")%></td>
+        <% else %>
+          <td><%= stress_diary.time.strftime("%H時%M分頃")%></td>
+        <% end %>
+        <td><%= stress_diary.stress_level %></td>
+        <td><%= stress_diary.duration %></td>
+        <td><%= stress_diary.situation %></td>
+        <td><%= stress_diary.trigger %></td>
+        <td><%= stress_diary.reaction %></td>
+        <td><%= link_to '詳細', stress_diary %></td>
+        <td><%= link_to '編集', edit_stress_diary_path(stress_diary) %></td>
+        <td><%= link_to '削除', stress_diary, method: :delete, data: { confirm: '削除してよろしいですか?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
+
+<%= link_to '戻る', user_path(current_user.id) %>

@@ -13,8 +13,8 @@ Rails.application.routes.draw do
       sessions:           "users/sessions",
       # unlocks:            "users/unlocks"
     }
-
   resources :users
+  get '/dailry_data' ,to: 'users#dailry_data'
   resources :big5_scores
-
+  resources :stress_diaries
 end

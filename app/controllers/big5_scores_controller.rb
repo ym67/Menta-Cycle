@@ -5,7 +5,7 @@ class Big5ScoresController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
-    @big5_scores = Big5Score.all
+    @big5_scores = Big5Score.where(user_id: current_user.id)
   end
 
   def show
