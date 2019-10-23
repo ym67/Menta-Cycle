@@ -54,4 +54,9 @@ module ApplicationHelper
       @last_time_extraversion           = 0
     end
   end
+
+  #自分のストレスダイアリー
+  def my_stress_diaries
+    @my_stress_diaries = StressDiary.where(user_id: current_user.id)
+  end
 end
