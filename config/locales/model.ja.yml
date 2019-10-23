@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
+      stress_diary: "ストレスダイアリー"
     attributes:
       user:
         name: "名前"
@@ -12,3 +13,10 @@ ja:
         password: "パスワード"
         password_confirmation: "パスワード(確認用)"
         remember_me: "ログインを記憶する"
+      stress_diary:
+        time: "時間"
+        stress_level: "ストレス度"
+        duration: "持続時間"
+        situation: "状況"
+        trigger: "きっかけ"
+        reaction: "リアクション"
