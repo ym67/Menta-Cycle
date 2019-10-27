@@ -1,0 +1,81 @@
+<!-- ストレス度ドーナツチャート -->
+<div class="chart_price">
+  <canvas id="myPieChart"></canvas>
+  <% if @pss4.score > 0 %>
+    <p class="PieChart"><%= @pss4.score %>%</p>
+  <% else %>
+    <p class="PieChart">ノーストレス!!</p>
+  <% end %>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+<script>
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        datasets: [{
+            data: [<%= @pss4.score %>, <%= 100 - @pss4.score %>],
+            <% if @pss4.score >= 80 %>
+              backgroundColor: ['Red', 'White'],
+              hoverBackgroundColor: ['Red', 'White'],
+            <% elsif @pss4.score >= 50 %>
+              backgroundColor: ['Yellow', 'White'],
+              hoverBackgroundColor: ['Yellow', 'White'],
+            <% elsif @pss4.score >= 30 %>
+              backgroundColor: ['Green', 'White'],
+              hoverBackgroundColor: ['Green', 'White'],
+            <% else %>
+              backgroundColor: ['Blue', 'White'],
+              hoverBackgroundColor: ['Blue', 'White'],
+            <% end %>
+            borderColor: ['Black', 'Black'],
+            hoverBorderColor: ['Black', 'Black']
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            text: 'ストレス度'
+        },
+        cutoutPercentage: 50,
+        animation: {
+          animateRotate: true
+        },
+        tooltips: {
+          enabled : false
+        }
+    }
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+<p>
+  <strong>Q1:</strong>
+  <%= @pss4.q1 %>点
+</p>
+
+<p>
+  <strong>Q2:</strong>
+  <%= @pss4.q2 %>点
+</p>
+
+<p>
+  <strong>Q3:</strong>
+  <%= @pss4.q3 %>点
+</p>
+
+<p>
+  <strong>Q4:</strong>
+  <%= @pss4.q4 %>点
+</p>
+
+<p>
+  <strong>合計:</strong>
+  <%= @pss4.score %>点
+</p>
+
+<%= link_to '編集', edit_pss4_path(@pss4) %> |
+<%= link_to '戻る', pss4s_path %>

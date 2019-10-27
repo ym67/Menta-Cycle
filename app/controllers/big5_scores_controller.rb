@@ -5,7 +5,7 @@ class Big5ScoresController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
-    @big5_scores = Big5Score.where(user_id: current_user.id)
+    @big5_scores = Big5Score.where(user_id: current_user.id).order(id: "DESC")
   end
 
   def show
@@ -47,7 +47,7 @@ class Big5ScoresController < ApplicationController
   private
 
   def big5_score_params
-    params.require(:big5_score).permit(:q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9, :q10)
+    params.require(:big5_score).permit(:q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9, :q10, :user_id)
   end
 
   def set_big5_score

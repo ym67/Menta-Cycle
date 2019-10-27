@@ -1,0 +1,33 @@
+<h1>Pss4s一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Q1</th>
+      <th>Q2</th>
+      <th>Q3</th>
+      <th>Q4</th>
+      <th>score</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pss4s.each do |pss4| %>
+      <tr>
+        <td><%= pss4.q1 %></td>
+        <td><%= pss4.q2 %></td>
+        <td><%= pss4.q3 %></td>
+        <td><%= pss4.q4 %></td>
+        <td><%= pss4.score %></td>
+        <td><%= link_to '詳細', pss4 %></td>
+        <td><%= link_to '編集', edit_pss4_path(pss4) %></td>
+        <td><%= link_to '削除', pss4, method: :delete, data: { confirm: '削除してよろしいですか?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'ストレスを計測する', new_pss4_path %>

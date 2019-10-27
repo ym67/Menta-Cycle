@@ -2,6 +2,63 @@
   <%= @date %>のデータ
 </h1>
 
+<!-- ストレス度ドーナツチャート -->
+<% if @dailry_pss4_score != nil %>
+  <div class="chart_price">
+    <canvas id="myPieChart"></canvas>
+    <% if @dailry_pss4_score.score > 0 %>
+      <p class="PieChart"><%= @dailry_pss4_score.score %>%</p>
+    <% else %>
+      <p class="PieChart">ノーストレス!!</p>
+    <% end %>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+  <script>
+    var ctx = document.getElementById("myPieChart");
+    var myPieChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: [<%= @dailry_pss4_score.score %>, <%= 100 - @dailry_pss4_score.score %>],
+            <% if @dailry_pss4_score.score >= 80 %>
+              backgroundColor: ['Red', 'White'],
+              hoverBackgroundColor: ['Red', 'White'],
+            <% elsif @dailry_pss4_score.score >= 50 %>
+              backgroundColor: ['Yellow', 'White'],
+              hoverBackgroundColor: ['Yellow', 'White'],
+            <% elsif @dailry_pss4_score.score >= 30 %>
+              backgroundColor: ['Green', 'White'],
+              hoverBackgroundColor: ['Green', 'White'],
+            <% else %>
+              backgroundColor: ['Blue', 'White'],
+              hoverBackgroundColor: ['Blue', 'White'],
+            <% end %>
+            borderColor: ['Black', 'Black'],
+            hoverBorderColor: ['Black', 'Black']
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'ストレス度'
+        },
+        cutoutPercentage: 50,
+        animation: {
+          animateRotate: true
+        },
+        tooltips: {
+          enabled : false
+        }
+      }
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+<% end %>
+
 <% if @dailry_stress_diaries != [] %>
 
 <h2><%= @date %>のストレスダイアリー</h2>
