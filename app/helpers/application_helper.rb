@@ -1,5 +1,5 @@
 module ApplicationHelper
-  # 前回のBig5レコード
+  # 自分の前回のBig5レコード
   def last_time_big5_score
     if user_signed_in? && Big5Score.where(user_id: current_user.id).length >= 2
       @last_time_big5_score = Big5Score.where(user_id: current_user.id).first
@@ -27,7 +27,7 @@ module ApplicationHelper
     end
   end
 
-  # 今回のBig5レコード
+  # 自分の今回のBig5レコード
   def this_time_big5_score
     if user_signed_in? && Big5Score.where(user_id: current_user.id).length  >= 1
       @this_time_big5_score = Big5Score.where(user_id: current_user.id).last
@@ -55,8 +55,9 @@ module ApplicationHelper
     end
   end
 
-  #自分のストレスダイアリー
+  # 自分のストレスダイアリー
   def my_stress_diaries
-    @my_stress_diaries = StressDiary.where(user_id: current_user.id)
+    @my_stress_diaries = StressDiary.where(user_id: current_user.id).order(id: :desc) if user_signed_in?
   end
+
 end

@@ -2,7 +2,7 @@ class StressDiariesController < ApplicationController
   before_action :set_stress_diary, only: [:show, :edit, :update, :destroy]
 
   def index
-    @stress_diaries = StressDiary.where(user_id: current_user.id)
+    @stress_diaries = StressDiary.where(user_id: current_user.id).order(id: "DESC")
   end
 
   def show
@@ -40,7 +40,7 @@ class StressDiariesController < ApplicationController
   private
 
   def stress_diary_params
-    params.require(:stress_diary).permit(:time, :stress_level, :duration, :situation, :trigger, :reaction)
+    params.require(:stress_diary).permit(:time, :stress_level, :duration, :situation, :trigger, :reaction, :user_id)
   end
 
   def set_stress_diary

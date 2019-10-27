@@ -12,4 +12,5 @@ class User < ApplicationRecord
   # --- アソシエーション ---
   has_many :big5_scores
   has_many :stress_diaries
+  has_many :pss4s
 end
