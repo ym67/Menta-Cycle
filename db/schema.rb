@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_085104) do
+ActiveRecord::Schema.define(version: 2019_10_28_090333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,57 @@ ActiveRecord::Schema.define(version: 2019_10_25_085104) do
     t.datetime "updated_at", null: false
     t.integer "score", default: 0, null: false
     t.index ["user_id"], name: "index_pss4s_on_user_id"
+  end
+
+  create_table "ssses", force: :cascade do |t|
+    t.integer "q1", default: 0, null: false
+    t.integer "q2", default: 0, null: false
+    t.integer "q3", default: 0, null: false
+    t.integer "q4", default: 0, null: false
+    t.integer "q5", default: 0, null: false
+    t.integer "q6", default: 0, null: false
+    t.integer "q7", default: 0, null: false
+    t.integer "q8", default: 0, null: false
+    t.integer "q9", default: 0, null: false
+    t.integer "q10", default: 0, null: false
+    t.integer "q11", default: 0, null: false
+    t.integer "q12", default: 0, null: false
+    t.integer "q13", default: 0, null: false
+    t.integer "q14", default: 0, null: false
+    t.integer "q15", default: 0, null: false
+    t.integer "q16", default: 0, null: false
+    t.integer "q17", default: 0, null: false
+    t.integer "q18", default: 0, null: false
+    t.integer "q19", default: 0, null: false
+    t.integer "q20", default: 0, null: false
+    t.integer "q21", default: 0, null: false
+    t.integer "q22", default: 0, null: false
+    t.integer "q23", default: 0, null: false
+    t.integer "q24", default: 0, null: false
+    t.integer "q25", default: 0, null: false
+    t.integer "q26", default: 0, null: false
+    t.integer "q27", default: 0, null: false
+    t.integer "q28", default: 0, null: false
+    t.integer "q29", default: 0, null: false
+    t.integer "q30", default: 0, null: false
+    t.integer "q31", default: 0, null: false
+    t.integer "q32", default: 0, null: false
+    t.integer "q33", default: 0, null: false
+    t.integer "q34", default: 0, null: false
+    t.integer "q35", default: 0, null: false
+    t.integer "q36", default: 0, null: false
+    t.integer "q37", default: 0, null: false
+    t.integer "q38", default: 0, null: false
+    t.integer "q39", default: 0, null: false
+    t.integer "q40", default: 0, null: false
+    t.integer "score", default: 0, null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "action", default: 0, null: false
+    t.integer "condition", default: 0, null: false
+    t.integer "emotions", default: 0, null: false
+    t.index ["user_id"], name: "index_ssses_on_user_id"
   end
 
   create_table "stress_diaries", force: :cascade do |t|
@@ -89,5 +140,6 @@ ActiveRecord::Schema.define(version: 2019_10_25_085104) do
 
   add_foreign_key "big5_scores", "users"
   add_foreign_key "pss4s", "users"
+  add_foreign_key "ssses", "users"
   add_foreign_key "stress_diaries", "users"
 end
