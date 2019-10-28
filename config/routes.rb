@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/dailry_data' ,to: 'users#dailry_data'
   resources :users
   resources :pss4s
+  resources :ssses
   resources :big5_scores
   resources :stress_diaries
 end

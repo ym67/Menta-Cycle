@@ -22,6 +22,9 @@ class Pss4sController < ApplicationController
       while Pss4.where(user_id: current_user.id).where(created_at: @pss4.created_at.in_time_zone.all_day).length >= 2 do
         Pss4.where(user_id: current_user.id).where(created_at: @pss4.created_at.in_time_zone.all_day).first.destroy
       end
+      if Sss.where(user_id: current_user.id).where(created_at: @pss4.created_at.in_time_zone.all_day).length > 0
+        Sss.where(user_id: current_user.id).where(created_at: @pss4.created_at.in_time_zone.all_day).last.destroy
+      end
       redirect_to @pss4, notice: '診断終了'
     else
       render :new
@@ -44,7 +47,7 @@ class Pss4sController < ApplicationController
   private
 
   def pss4_params
-    params.require(:pss4).permit(:q1, :q2, :q3, :q4, :user_id)
+    params.require(:pss4).permit(:q1, :q2, :q3, :q4, :score, :user_id)
   end
 
   def set_pss4
