@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :ssses
   resources :big5_scores
   resources :stress_diaries
+  resources :contacts
 end

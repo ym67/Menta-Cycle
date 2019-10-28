@@ -1,0 +1,49 @@
+<h1>お問い合わせ</h1>
+
+<%= form_with(model: @contact, local: true) do |form| %>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact.errors.count, "件") %>のエラーがあります</h2>
+
+      <ul>
+      <% @contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <% if user_signed_in? %>
+      <%= form.text_field :name, placeholder: "お名前", value: current_user.name %>
+    <% else %>
+      <%= form.text_field :name, placeholder: "お名前" %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <% if user_signed_in? %>
+      <%= form.email_field :email, placeholder: "email@example.com", value: current_user.email %>
+    <% else %>
+      <%= form.email_field :email, placeholder: "email@example.com" %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, placeholder: "お問い合わせ内容" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit value: "送信" %>
+  </div>
+
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to '戻る', user_path(current_user.id) %>
+<% else %>
+  <%= link_to '戻る', new_user_session_path %>
+<% end %>

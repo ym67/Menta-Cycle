@@ -14,4 +14,5 @@ class User < ApplicationRecord
   has_many :stress_diaries
   has_many :pss4s
   has_many :ssses
+  has_many :contacts
 end
