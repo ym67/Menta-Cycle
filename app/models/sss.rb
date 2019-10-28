@@ -56,20 +56,20 @@ class Sss < ApplicationRecord
       self.q31 + self.q32 + self.q33 + self.q34 + self.q35 + self.q36 + self.q37 + self.q38 + self.q39 + self.q40
       )
   end
-  # 項目別 -- 感情
+  # 項目別 -> 感情
   def set_emotions_score
     self.emotions = (
       self.q19 + self.q21 + self.q26 + self.q27 + self.q28 + self.q29 + self.q30 + self.q31 + self.q32 + self.q33 +
       self.q36 + self.q37 + self.q38 + self.q39
     )
   end
-  # 項目別 -- 行動
+  # 項目別 -> 行動
   def set_action_score
     self.action = (
       self.q15 + self.q20 + self.q22 + self.q23 + self.q24 + self.q25 + self.q40
     )
   end
-  # 項目別 -- 体調
+  # 項目別 -> 体調
   def set_condition_score
     self.condition = (
       self.q1 + self.q2 + self.q3 + self.q4 + self.q5 + self.q6 + self.q7 + self.q8 + self.q9 + self.q10 +
