@@ -1,4 +1,4 @@
-<table align="center" valign="midle">
+<table align="center" valign="midle" width="100%">
   <%= form_with(model: stress_diary, local: true) do |form| %>
     <% if stress_diary.errors.any? %>
       <div id="error_explanation">
@@ -12,19 +12,18 @@
       </div>
     <% end %>
   <thead>
-    <tr align="center" valign="midle">
+    <tr align="center" valign="midle" class="text-center" height="35">
       <th><%= form.label :time %></th>
       <th><%= form.label :stress_level %></th>
       <th><%= form.label :duration %></th>
       <th><%= form.label :situation %></th>
       <th><%= form.label :trigger %></th>
       <th><%= form.label :reaction %></th>
-      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
-      <tr align="center" valign="midle" height="100%">
+      <tr align="center" valign="midle" height="35">
         <td>
           <div class="field">
             <%= form.time_select :time, minute_step: 15 %>頃
@@ -32,35 +31,38 @@
         </td>
         <td>
           <div class="field">
-            <%= form.select :stress_level, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], class: 'stress_level' %>
+            <%= form.select :stress_level, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], class: 'form-control' %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= form.select :duration, ["〜10分", "10〜20分", "20〜30分", "30〜40分", "40〜50分", "50〜60分", "60分〜"], class: 'duration' %>
+            <%= form.select :duration, ["〜10分", "10〜20分", "20〜30分", "30〜40分", "40〜50分", "50〜60分", "60分〜"], class: 'form-control' %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= form.text_area :situation, size: "25x4" %>
+            <%= form.text_area :situation, class: "form-control", size: "25x4" %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= form.text_area :trigger, size: "25x4" %>
+            <%= form.text_area :trigger, class: "form-control", size: "25x4" %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= form.text_area :reaction, size: "25x4" %>
-          </div>
-        </td>
-        <td>
-          <div class="actions">
-            <%= form.submit value: "投稿" %>
+            <%= form.text_area :reaction, class: "form-control", size: "25x4" %>
           </div>
         </td>
       </tr>
   </tbody>
-  <% end %>
 </table>
+
+<br>
+<br>
+
+<div class="row mx-auto text-center">
+  <div class="col-md-4 offset-md-4 mx-auto text-center"><%= form.submit value: "投稿", class: "btn btn-primary" %></div>
+</div>
+
+<% end %>

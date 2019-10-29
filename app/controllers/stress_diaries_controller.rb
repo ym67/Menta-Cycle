@@ -1,5 +1,5 @@
 class StressDiariesController < ApplicationController
-  before_action :set_stress_diary, only: [:show, :edit, :update, :destroy]
+  before_action :set_stress_diary, only: [:edit, :update, :destroy]
 
   def index
     words = params[:q].delete(:duration_or_situation_or_trigger_or_reaction_cont) if params[:q].present?
@@ -13,9 +13,6 @@ class StressDiariesController < ApplicationController
     @stress_diaries = @query.result(distinct: true).page(params[:page]).per(10).where(user_id: current_user.id).order(created_at: :desc)
   end
 
-  def show
-  end
-
   def new
     @stress_diary = StressDiary.new
   end
@@ -26,7 +23,7 @@ class StressDiariesController < ApplicationController
   def create
     @stress_diary = current_user.stress_diaries.build(stress_diary_params)
     if @stress_diary.save
-      redirect_to @stress_diary, notice: '日記を投稿しました'
+      redirect_to stress_diaries_path, notice: 'ストレスダイアリーを投稿しました'
     else
       render :new
     end
@@ -34,7 +31,7 @@ class StressDiariesController < ApplicationController
 
   def update
     if @stress_diary.update(stress_diary_params)
-      redirect_to @stress_diary, notice: '日記を更新しました'
+      redirect_to stress_diaries_path, notice: 'ストレスダイアリーを更新しました'
     else
       render :edit
     end
@@ -42,7 +39,7 @@ class StressDiariesController < ApplicationController
 
   def destroy
     @stress_diary.destroy
-    redirect_to stress_diaries_url, notice: '日記を削除しました'
+    redirect_to stress_diaries_url, notice: 'ストレスダイアリーを削除しました'
   end
 
   private

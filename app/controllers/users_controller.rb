@@ -8,6 +8,16 @@ class UsersController < ApplicationController
   def show
     @dailry_data = StressDiary.where(user_id: current_user).order(created_at: :desc) + Pss4.where(user_id: current_user) + Sss.where(user_id: current_user)
     @stress_scores = (Pss4.where(user_id: current_user).order(:created_at).limit(50) + Sss.where(user_id: current_user).order(:created_at).limit(50)).pluck(:score, :created_at, :q40).sort_by { |_, b| b }
+    total_scores = 0
+    @stress_scores.each do |score|
+      if score[2] != nil && score[0] >= 5
+        total_scores += ((score[0]).to_f / 10)
+      else
+        total_scores += score[0]
+      end
+    end
+    @average_score = (total_scores.to_f / @stress_scores.length).round
+    @total_diary = StressDiary.where(user_id: current_user)
   end
 
   def dailry_data
@@ -23,10 +33,14 @@ class UsersController < ApplicationController
     @query = StressDiary.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).ransack(params[:q])
     @dailry_stress_diaries = @query.result(distinct: true).page(params[:page]).per(10).where(user_id: current_user.id).order(created_at: :desc)
 
-    if Pss4.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last == nil && Sss.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last != nil
-      @dailry_stress_score = Sss.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last
-    else
-      @dailry_stress_score = Pss4.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last.score
+    begin
+      if Pss4.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last == nil && Sss.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last != nil
+        @dailry_stress_score = Sss.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last
+      else
+        @dailry_stress_score = Pss4.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last.score
+      end
+    rescue
+      @dailry_stress_score = nil
     end
   end
 
