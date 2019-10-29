@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_28_103005) do
+ActiveRecord::Schema.define(version: 2019_10_29_042452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2019_10_28_103005) do
   create_table "stress_diaries", force: :cascade do |t|
     t.time "time", null: false
     t.integer "stress_level", default: 0, null: false
-    t.integer "duration", null: false
+    t.string "duration", default: "", null: false
     t.string "situation", default: "", null: false
     t.string "trigger", default: "", null: false
     t.string "reaction", default: "", null: false

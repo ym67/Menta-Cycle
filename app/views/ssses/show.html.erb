@@ -19,8 +19,8 @@ var myPieChart = new Chart(ctx, {
         datasets: [{
             data: [<%= ((@sss.action.to_f) / 10) %>, <%= ((@sss.emotions.to_f) / 10) %> ,<%= ((@sss.condition.to_f) / 10) %>, <%= 100 - ((@sss.score.to_f) / 10) %>],
             <% if ((@sss.score.to_f) / 10) >= 80 %>
-              backgroundColor: ['#ff4500', '#ff0000', '#dc143c' '#ffffff'],
-              hoverBackgroundColor: ['#ff4500', '#ff0000', '#dc143c' '#ffffff'],
+              backgroundColor: ['#ff4500', '#ff0000', '#dc143c', '#ffffff'],
+              hoverBackgroundColor: ['#ff4500', '#ff0000', '#dc143c', '#ffffff'],
             <% elsif ((@sss.score.to_f) / 10) >= 50 %>
               backgroundColor: ['#ffff00', '#ffd700', '#ffa500', '#ffffff'],
               hoverBackgroundColor: ['#ffff00', '#ffd700', '#ffa500', '#ffffff'],

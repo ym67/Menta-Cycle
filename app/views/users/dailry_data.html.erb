@@ -2,28 +2,24 @@
   <%= @date %>のデータ
 </h1>
 
-<%= @dailry_stress_score %><br>
-<%= @dailry_stress_score.class %>
-
 <!-- ストレス度ドーナツチャート -->
 <% if @dailry_stress_score != nil %>
 
   <div class="chart_price">
     <canvas id="myPieChart"></canvas>
-    <% if @dailry_stress_score.class == Integer %> <!-- Pss4 -->
+    <% if @dailry_stress_score.class == Integer %>
       <% if @dailry_stress_score > 0 %>
         <p class="PieChart"><%= @dailry_stress_score %>%</p>
       <% else %>
-        <p class="PieChart">ノーストレス!!</p>
+        <p class="PieChart">ノーストレス!</p>
       <% end %>
-    <% else %>  <!-- Sss -->
+    <% else %>
       <% if @dailry_stress_score.score > 0 %>
-        <p class="PieChart"><%= @dailry_stress_score.score %>%</p>
+        <p class="PieChart"><%= (@dailry_stress_score.score.to_f) / 10 %>%</p>
       <% else %>
-        <p class="PieChart">ノーストレス!!</p>
+        <p class="PieChart">ノーストレス!</p>
       <% end %>
     <% end %>
-
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
@@ -33,7 +29,7 @@
     var myPieChart = new Chart(ctx, {
       type: 'pie',
       data: {
-        <% if @dailry_stress_score.class == Sss %>
+        <% if @dailry_stress_score.class != Integer %>
           labels: ["行動", "思考・感情", "体調"],
         <% end %>
         datasets:
@@ -57,30 +53,30 @@
               hoverBorderColor: ['Black', 'Black']
             }]
           <% else %>
-          [{
-            data: [<%= ((@dailry_stress_score.action.to_f) / 10) %>, <%= ((@dailry_stress_score.emotions.to_f) / 10) %> ,<%= ((@dailry_stress_score.condition.to_f) / 10) %>, <%= 100 - ((@dailry_stress_score.score.to_f) / 10) %>],
-            <% if ((@dailry_stress_score.score.to_f) / 10) >= 80 %>
-              backgroundColor: ['#ff4500', '#ff0000', '#dc143c' '#ffffff'],
-              hoverBackgroundColor: ['#ff4500', '#ff0000', '#dc143c' '#ffffff'],
-            <% elsif ((@dailry_stress_score.score.to_f) / 10) >= 50 %>
-              backgroundColor: ['#ffff00', '#ffd700', '#ffa500', '#ffffff'],
-              hoverBackgroundColor: ['#ffff00', '#ffd700', '#ffa500', '#ffffff'],
-            <% elsif ((@dailry_stress_score.score.to_f) / 10) >= 30 %>
-              backgroundColor: ['#3cb371', '#2e8b57', '#228b22', '#ffffff'],
-              hoverBackgroundColor: ['#3cb371', '#2e8b57', '#228b22', '#ffffff'],
-            <% else %>
-              backgroundColor: ['#1e90ff', '#6495ed', '#0000ff', '#ffffff'],
-              hoverBackgroundColor: ['#1e90ff', '#6495ed', '#0000ff', '#ffffff'],
-            <% end %>
-            borderColor: ['#000000', '#000000', '#000000', '#000000'],
-            hoverBorderColor: ['#000000', '#000000', '#000000', '#000000']
-          }]
-        <% end %>
+            [{
+              data: [<%= ((@dailry_stress_score.action.to_f) / 10) %>, <%= ((@dailry_stress_score.emotions.to_f) / 10) %>, <%= ((@dailry_stress_score.condition.to_f) / 10) %>, <%= 100 - ((@dailry_stress_score.score.to_f) / 10) %>],
+              <% if ((@dailry_stress_score.score.to_f) / 10) >= 80 %>
+                backgroundColor: ['#ff4500', '#ff0000', '#dc143c', '#ffffff'],
+                hoverBackgroundColor: ['#ff4500', '#ff0000', '#dc143c', '#ffffff'],
+              <% elsif ((@dailry_stress_score.score.to_f) / 10) >= 50 %>
+                backgroundColor: ['#ffff00', '#ffd700', '#ffa500', '#ffffff'],
+                hoverBackgroundColor: ['#ffff00', '#ffd700', '#ffa500', '#ffffff'],
+              <% elsif ((@dailry_stress_score.score.to_f) / 10) >= 30 %>
+                backgroundColor: ['#3cb371', '#2e8b57', '#228b22', '#ffffff'],
+                hoverBackgroundColor: ['#3cb371', '#2e8b57', '#228b22', '#ffffff'],
+              <% else %>
+                backgroundColor: ['#1e90ff', '#6495ed', '#0000ff', '#ffffff'],
+                hoverBackgroundColor: ['#1e90ff', '#6495ed', '#0000ff', '#ffffff'],
+              <% end %>
+              borderColor: ['#000000', '#000000', '#000000', '#000000'],
+              hoverBorderColor: ['#000000', '#000000', '#000000', '#000000']
+            }]
+          <% end %>
       },
       options: {
         title: {
           display: true,
-          text: 'ストレス値'
+          text: 'ストレス度'
         },
         cutoutPercentage: 50,
         animation: {
@@ -88,12 +84,12 @@
         },
         tooltips: {
           enabled :
-            <% if @dailry_stress_score.class == Sss %>
+            <% if @dailry_stress_score.class != Integer %>
               true
             <% else %>
               false
             <% end %>
-        }
+        },
       }
     });
   </script>
@@ -110,12 +106,13 @@
 <table border="1" align="center" valign="midle">
   <thead>
     <tr>
-      <th>時間</th>
-      <th>ストレス度</th>
-      <th>持続時間</th>
-      <th>状況</th>
-      <th>きっかけ</th>
-      <th>リアクション</th>
+      <th><%= sort_link(@query, :created_at, "日付") %></th>
+      <th><%= sort_link(@query, :time, "時間") %></th>
+      <th><%= sort_link(@query, :stress_level, "ストレス度") %></th>
+      <th><%= sort_link(@query, :duration, "持続時間") %></th>
+      <th><%= sort_link(@query, :situation, "シチュエーション") %></th>
+      <th><%= sort_link(@query, :trigger, "そうなったきっかけ") %></th>
+      <th><%= sort_link(@query, :reaction, "それに対する反応") %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -123,11 +120,8 @@
   <tbody>
     <% @dailry_stress_diaries.each do |stress_diary| %>
       <tr>
-        <% if stress_diary.time.strftime("%M") == "00" %>
-          <td><%= stress_diary.time.strftime("%H時頃")%></td>
-        <% else %>
-          <td><%= stress_diary.time.strftime("%H時%M分頃")%></td>
-        <% end %>
+        <td><%= stress_diary.created_at.strftime("%y/%m/%d")%></td>
+        <td><%= stress_diary.time.strftime("%H：%M頃")%></td>
         <td><%= stress_diary.stress_level %></td>
         <td><%= stress_diary.duration %></td>
         <td><%= stress_diary.situation %></td>
