@@ -3,12 +3,21 @@
 <table border="1" align="center" valign="midle">
   <thead>
     <tr>
-      <th>時間</th>
-      <th>ストレス度</th>
-      <th>持続時間</th>
-      <th>状況</th>
-      <th>きっかけ</th>
-      <th>リアクション</th>
+      <th>
+        <%= search_form_for @query do |form| %>
+          <%= form.search_field :duration_or_situation_or_trigger_or_reaction_cont %>
+          <%= form.submit "検索" %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th><%= sort_link(@query, :created_at, "日付") %></th>
+      <th><%= sort_link(@query, :time, "時間") %></th>
+      <th><%= sort_link(@query, :stress_level, "ストレス度") %></th>
+      <th><%= sort_link(@query, :duration, "持続時間") %></th>
+      <th><%= sort_link(@query, :situation, "シチュエーション") %></th>
+      <th><%= sort_link(@query, :trigger, "そうなったきっかけ") %></th>
+      <th><%= sort_link(@query, :reaction, "それに対する反応") %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,11 +25,8 @@
   <tbody>
     <% @stress_diaries.each do |stress_diary| %>
       <tr>
-        <% if stress_diary.time.strftime("%M") == "00" %>
-          <td><%= stress_diary.time.strftime("%H時頃")%></td>
-        <% else %>
-          <td><%= stress_diary.time.strftime("%H時%M分頃")%></td>
-        <% end %>
+        <td><%= stress_diary.created_at.strftime("%y/%m/%d")%></td>
+        <td><%= stress_diary.time.strftime("%H：%M頃")%></td>
         <td><%= stress_diary.stress_level %></td>
         <td><%= stress_diary.duration %></td>
         <td><%= stress_diary.situation %></td>
@@ -37,3 +43,4 @@
 <br>
 
 <%= link_to '新規投稿', new_stress_diary_path %>
+<%= link_to '戻る', 'javascript:history.back()' %>
