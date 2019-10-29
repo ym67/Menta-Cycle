@@ -48,6 +48,8 @@ gem 'rails_admin'
 gem 'cancancan'
 gem 'simple_calendar'
 gem 'ransack'
+gem 'bootstrap'
+gem 'jquery-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 
