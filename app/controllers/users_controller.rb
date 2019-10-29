@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       end
     end
     @query = StressDiary.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).ransack(params[:q])
-    @dailry_stress_diaries = @query.result(distinct: true).page(params[:page]).where(user_id: current_user.id).order(created_at: :desc)
+    @dailry_stress_diaries = @query.result(distinct: true).page(params[:page]).per(10).where(user_id: current_user.id).order(created_at: :desc)
 
     if Pss4.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last == nil && Sss.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last != nil
       @dailry_stress_score = Sss.where(created_at: params[:para].in_time_zone.all_day).where(user_id: current_user).last

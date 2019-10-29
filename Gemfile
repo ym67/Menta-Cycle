@@ -48,6 +48,10 @@ gem 'rails_admin'
 gem 'cancancan'
 gem 'simple_calendar'
 gem 'ransack'
+gem 'bootstrap'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

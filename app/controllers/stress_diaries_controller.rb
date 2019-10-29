@@ -10,7 +10,7 @@ class StressDiariesController < ApplicationController
       end
     end
     @query = StressDiary.where(user_id: current_user.id).ransack(params[:q])
-    @stress_diaries = @query.result(distinct: true).page(params[:page]).where(user_id: current_user.id).order(created_at: :desc)
+    @stress_diaries = @query.result(distinct: true).page(params[:page]).per(10).where(user_id: current_user.id).order(created_at: :desc)
   end
 
   def show
