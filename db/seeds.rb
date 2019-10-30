@@ -1,8 +1,18 @@
 # conding: utf-8
 
-# 一般ユーザ
+# ユーザ
 User.create!(
   [
+    {
+      name: '管理者(seed)',
+      gender: true,
+      age: "20",
+      email: 'admin1@seed.com',
+      password: '000000',
+      created_at: DateTime.current,
+      updated_at: DateTime.current,
+      admin: true
+    },
     {
       name: '一般ユーザ（seed）',
       gender: true,
@@ -12,22 +22,6 @@ User.create!(
       created_at: DateTime.current,
       updated_at: DateTime.current,
       admin: false
-    }
-  ]
-)
-
-# 管理者
-User.create!(
-  [
-    {
-      name: '管理者１(seed)',
-      gender: true,
-      age: "20",
-      email: 'admin1@seed.com',
-      password: '000000',
-      created_at: DateTime.current,
-      updated_at: DateTime.current,
-      admin: true
     }
   ]
 )
