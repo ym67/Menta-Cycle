@@ -1,7 +1,4 @@
-FactoryBot.define do
-  factory :contact do
-    name { "MyString" }
-    email { "MyString" }
-    content { "MyText" }
-  end
-end
+# FactoryBot.define do
+#   factory :contact, class: Contact do
+#   end
+# end
