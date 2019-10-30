@@ -14,10 +14,10 @@ Rails.application.routes.draw do
       # unlocks:            "users/unlocks"
     }
   get '/dailry_data' ,to: 'users#dailry_data'
-  resources :users, only: [:show]
-  resources :pss4s, only: [:new, :show]
-  resources :ssses, only: [:new, :show]
-  resources :big5_scores, only: [:new, :show]
+  resources :users
+  resources :pss4s
+  resources :ssses
+  resources :big5_scores
   resources :stress_diaries
   resources :contacts
 end
