@@ -1,15 +1,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MentaCycle</title>
+    <title>Menta Cycle</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
 
   <body>
-    <%= yield %>
+    <div id="wrapper">
+      <header id="header">
+        <!-- ヘッダーメニュー -->
+        <% if user_signed_in? %>
+          <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: RGBA(0,102,255,0.8);">
+            <%= link_to "Menta Cycle", user_path(current_user.id), class: "navbar-brand", style: "color: #FFFFFF;" %>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#gnavi" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="gnavi">
+              <ul class="navbar-nav ml-auto float-right">
+                <% if current_user.try(:admin?) %>
+                  <li class="nav-item"><%= link_to "管理メニュー", rails_admin_path, class:"nav-link", style: "color: #FFFFFF;"  %></li>
+                <% end %>
+                <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id), class:"nav-link", style: "color: #FFFFFF;"  %></li>
+                <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"nav-link", style: "color: #FFFFFF;"  %></li>
+              </ul>
+            </div>
+          </nav>
+        <% end %>
+      </header>
+
+      <!-- フラッシュメッセージ <p class="alert alert-error"></p <p class="alert alert-notice"></p>>-->
+      <% if notice %>
+          <p class="alert alert-primary alert-notice rounded-0"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+          <p class="alert alert-danger alert-error rounded-0"><%= alert %></p>
+      <% end %>
+
+      <!-- メインコンテンツ -->
+      <div class="container-fluid">
+        <div id="contents">
+          <div id="main_area">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+
+      <!-- フッター -->
+      <footer id="footer">
+        <div class="container-fluid">
+          <div class="row d-flex align-items-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">Copyright © 2019 Yusuke Matsuda All Rights Reserved.</div>
+            <div class="col-md-3"><%= link_to 'お問い合わせ', new_contact_path, class: "btn btn-outline-primary rounded-0"  %></div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
   </body>
+
 </html>

@@ -1,0 +1,128 @@
+<%= form_with(model: stress_diary, local: true) do |form| %>
+  <% if stress_diary.errors.any? %>
+    <div id="error_explanation" class="row">
+      <div class="col-md-6 offset-md-3 text-left alert alert-danger rounded-0" role="alert">
+        <strong class="alert-heading"><%= pluralize(stress_diary.errors.count, "件") %>のエラーがあります</strong>
+        <ul class="mb-0">
+          <% stress_diary.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <br>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <strong><%= form.label :time %></strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <%= form.time_select :time, minute_step: 15, class: "form-control rounded-0" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <strong><%= form.label :stress_level %></strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <%= form.select :stress_level, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], class: 'form-control rounded-0' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <strong><%= form.label :duration %></strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <%= form.select :duration, ["〜10分", "10〜20分", "20〜30分", "30〜40分", "40〜50分", "50〜60分", "60分〜"], class: 'form-control rounded-0' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <strong><%= form.label :situation %></strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <%= form.text_area :situation, placeholder: "ストレスを感じた時の状況", class: "form-control rounded-0" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <strong><%= form.label :trigger %></strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <%= form.text_area :trigger, placeholder: "その状況のきっかけ", class: "form-control rounded-0" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <strong><%= form.label :reaction %></strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <%= form.text_area :reaction, placeholder: "その状況でどんな反応をしたか", class: "form-control rounded-0" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row mx-auto text-center">
+    <div class="col-md-4 offset-md-4 mx-auto text-center"><%= form.submit value: "投稿", class: "btn btn-primary rounded-0" %></div>
+  </div>
+
+<% end %>

@@ -1,0 +1,56 @@
+<canvas id="myRaderChart"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+<script>
+var ctx = document.getElementById("myRaderChart");
+var myRadarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+        labels: ["誠実性", "協調性", "情緒安定性", "開放性", "外向性"],
+        datasets: [{
+            label: '今回',
+            data: [<%= @this_time_conscientiousness %>, <%= @this_time_agreeableness %>, <%= @this_time_neuroticism %>, <%= @this_time_openness_to_experience %>, <%= @this_time_extraversion %>],
+            backgroundColor: 'RGBA(0,102,255,0.5)',
+            borderColor: 'RGBA(0,102,255,1)',
+            borderWidth: 2,
+            pointBackgroundColor: 'RGB(0,102,255)'
+        },
+        <% if @last_time_big5_score != @this_time_big5_score %>
+        {
+            label: '前回',
+            data: [<%= @last_time_conscientiousness %>, <%= @last_time_agreeableness %>, <%= @last_time_neuroticism %>, <%= @last_time_openness_to_experience %>, <%= @last_time_extraversion %>],
+            backgroundColor: 'RGBA(51,204,255,0.5)',
+            borderColor: 'RGBA(51,204,255,0.8)',
+            borderWidth: 2,
+            pointBackgroundColor: 'RGB(51,204,255)'
+        }
+        <% end %>
+        ]
+    },
+    options: {
+        title: {
+            display: true,
+            text: 'Big5診断結果',
+            fontSize: 20
+        },
+        scale:{
+            ticks:{
+                suggestedMin: 0,
+                suggestedMax: 7,
+                stepSize: 1,
+                callback: function(value, index, values){
+                    return  value
+                }
+            }
+        }
+    }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+<br>
+<br>
+
+<div class="row">
+  <div class="col-md-4 offset-md-4 text-center"><%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary rounded-0" %></div>
+</div>

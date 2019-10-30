@@ -1,0 +1,191 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require simple_calendar
+ */
+@import "bootstrap";
+
+// 全体的
+body {
+  background-color: #FFFFFF;
+}
+
+body, #wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#contents {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+// メッセージ系
+#notice {
+  margin-top: 100px;
+  text-align: center;
+}
+
+#flash_msg {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.alert-notice {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.alert-error {
+  margin-top: 100px;
+  text-align: center;
+}
+
+
+// エラー関係
+.field_with_errors {
+  padding: 1px;
+  background-color: Red;
+  display: table;
+}
+
+
+// ヘッダー
+.navbar .navbar-brand {
+  font-size: 30px;
+}
+
+.navbar .navbar-brand:hover {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  font-size: 15px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.navbar-toggler {
+  outline: solid 0 ;
+}
+
+// ハンバーガーメニュー
+.navbar-light .navbar-toggler {
+  color: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+.navbar-light .navbar-toggler-icon {
+  background-image:none;
+  background-color: #fff;
+  width: 30px;
+  height: 2px;
+  display: block;
+  position: absolute;
+  transition: ease .5s;
+}
+
+.navbar-toggler-icon:nth-of-type(1) {top:7px;}
+.navbar-toggler-icon:nth-of-type(2) {top:14px;}
+.navbar-toggler-icon:nth-of-type(3) {top:21px;}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(1) {
+top:13px;
+transform: rotate(45deg);
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(2) {
+opacity: 0;
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(3) {
+top:13px;
+transform: rotate(-45deg);
+}
+
+
+// ストレス度ドーナツチャート
+.chart_price {
+  position: relative;
+}
+
+.PieChart1 {
+   position: absolute;
+   font-size: 2vw;
+   top: 0;
+   left: 0;
+   margin: auto;
+   right: 0;
+   margin: auto;
+   text-align: center;
+   top: 50%;
+   -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+
+.PieChart2 {
+   position: absolute;
+   font-size: 2vw;
+   top: 0;
+   left: 0;
+   margin: auto;
+   right: 0;
+   margin: auto;
+   text-align: center;
+   top: 60%;
+   -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+
+.PieChart3 {
+   position: absolute;
+   font-size: 2vw;
+   top: 0;
+   left: 0;
+   margin: auto;
+   right: 0;
+   margin: auto;
+   text-align: center;
+   top: 56%;
+   -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+
+.PieChart4 {
+   position: absolute;
+   font-size: 2vw;
+   top: 0;
+   left: 0;
+   margin: auto;
+   right: 0;
+   margin: auto;
+   text-align: center;
+   top: 65%;
+   -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+
+// フッター
+footer {
+  color: #007BFF;
+  opacity: 0.5;
+  margin-top: auto;
+  text-align: center;
+  padding: 15px;
+}

@@ -1,0 +1,59 @@
+<!-- ストレス度ドーナツチャート -->
+<div class="chart_price">
+  <canvas id="myPieChart"></canvas>
+    <p class="PieChart3"><strong>ストレス度</strong></p>
+    <p class="PieChart4"><strong><%= ((@sss.score.to_f) / 10) %>%</strong></p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+<script>
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ["行動", "思考・感情", "体調"],
+        datasets: [{
+            data: [<%= ((@sss.action.to_f) / 10) %>, <%= ((@sss.emotions.to_f) / 10) %> ,<%= ((@sss.condition.to_f) / 10) %>, <%= 100 - ((@sss.score.to_f) / 10) %>],
+            <% if ((@sss.score.to_f) / 10) >= 80 %>
+              backgroundColor: ['#ff4500', '#ff0000', '#dc143c', '#ffffff'],
+              hoverBackgroundColor: ['#ff4500', '#ff0000', '#dc143c', '#ffffff'],
+            <% elsif ((@sss.score.to_f) / 10) >= 50 %>
+              backgroundColor: ['#ffff00', '#ffd700', '#ffa500', '#ffffff'],
+              hoverBackgroundColor: ['#ffff00', '#ffd700', '#ffa500', '#ffffff'],
+            <% elsif ((@sss.score.to_f) / 10) >= 30 %>
+              backgroundColor: ['#3cb371', '#2e8b57', '#228b22', '#ffffff'],
+              hoverBackgroundColor: ['#3cb371', '#2e8b57', '#228b22', '#ffffff'],
+            <% else %>
+              backgroundColor: ['#1e90ff', '#6495ed', '#0000ff', '#ffffff'],
+              hoverBackgroundColor: ['#1e90ff', '#6495ed', '#0000ff', '#ffffff'],
+            <% end %>
+            borderColor: ['#000000', '#000000', '#000000', '#000000'],
+            hoverBorderColor: ['#000000', '#000000', '#000000', '#000000']
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            text: '診断結果',
+            fontSize: 20
+        },
+        cutoutPercentage: 50,
+        animation: {
+          animateRotate: true
+        },
+        tooltips: {
+          enabled : true
+        },
+    }
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+<br>
+<br>
+
+<div class="row">
+  <div class="col-md-4 offset-md-4 text-center"><%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary rounded-0" %></div>
+</div>
