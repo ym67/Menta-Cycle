@@ -1,11 +1,8 @@
 <!-- ストレス度ドーナツチャート -->
 <div class="chart_price">
   <canvas id="myPieChart"></canvas>
-  <% if ((@sss.score.to_f) / 10) > 0 %>
-    <p class="PieChart"><%= ((@sss.score.to_f) / 10) %>%</p>
-  <% else %>
-    <p class="PieChart">ノーストレス!!</p>
-  <% end %>
+    <p class="PieChart3"><strong>ストレス度</strong></p>
+    <p class="PieChart4"><strong><%= ((@sss.score.to_f) / 10) %>%</strong></p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
@@ -38,7 +35,8 @@ var myPieChart = new Chart(ctx, {
     options: {
         title: {
             display: true,
-            text: 'ストレス度'
+            text: '診断結果',
+            fontSize: 20
         },
         cutoutPercentage: 50,
         animation: {
@@ -53,10 +51,9 @@ var myPieChart = new Chart(ctx, {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 
-<p>
-  <strong>スコア:</strong>
-  <%= ((@sss.score.to_f) / 10).to_f %>
-</p>
+<br>
+<br>
 
-<%= link_to '編集', edit_sss_path(@sss) %> |
-<%= link_to '戻る', ssses_path %>
+<div class="row">
+  <div class="col-md-4 offset-md-4 text-center"><%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary rounded-0" %></div>
+</div>

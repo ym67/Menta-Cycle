@@ -1,4 +1,5 @@
 class StressDiariesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_stress_diary, only: [:edit, :update, :destroy]
 
   def index

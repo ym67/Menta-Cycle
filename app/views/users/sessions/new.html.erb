@@ -1,26 +1,68 @@
-<h2>ログイン</h2>
+<div class="row d-flex align-items-center">
+  <div class="col-md-8 offset-md-2 text-center mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-4 offset-md-4"><h4 class="text-center">ログイン</h4></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :email %></strong>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "address@example.com", class: "form-control rounded-0" %>
+            </div>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
-  <div class="field">
-    <%= form.label :email %><br />
-    <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "address@example.com" %>
-  </div>
+          <br>
+          <br>
 
-  <div class="field">
-    <%= form.label :password %><br />
-    <%= form.password_field :password, autocomplete: "current-password", placeholder: "6文字以上" %>
-  </div>
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :password %></strong>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.password_field :password, autocomplete: "current-password", placeholder: "6文字以上", class: "form-control rounded-0" %>
+            </div>
+          </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= form.check_box :remember_me %>
-      <%= form.label :remember_me %>
+          <br>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= form.check_box :remember_me %>
+              <%= form.label :remember_me %>
+            </div>
+          <% end %>
+
+          <br>
+
+          <div class="actions">
+            <%= form.submit "ログイン", class: "btn btn-primary rounded-0" %>
+          </div>
+          <br>
+        <% end %>
+
+        <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8"><hr></div>
+            <div class="col-md-2"></div>
+          </div>
+          <%= link_to "アカウントをお持ちでない方はこちら", new_registration_path(resource_name), class: "btn btn-outline-primary rounded-0" %>
+        <% end %>
+
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit "ログイン" %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
+<!-- <#%= render "users/shared/links" %> -->

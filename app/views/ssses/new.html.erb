@@ -1,5 +1,962 @@
-<h1>SSS診断</h1>
+<div class="row">
+  <div class="col-md-4 offset-md-4"><h3 class="text-center">ストレス計測（詳細版）</h3></div>
+</div>
 
-<%= render 'form', sss: @sss %>
 
-<%= link_to '戻る', ssses_path %>
+<%= form_with(model: @sss, local: true) do |form| %>
+  <% if @sss.errors.any? %>
+    <div id="error_explanation" class="row">
+      <div class="col-md-6 offset-md-3 text-left alert alert-danger rounded-0" role="alert">
+        <strong class="alert-heading"><%= pluralize(@sss.errors.count, "件") %>のエラーがあります</strong>
+        <ul class="mb-0">
+          <% @sss.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <br>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center"><strong>〈 １：全くない 〜 ６：とても多い 〉</strong></div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row" >
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q1 %>. 疲労感の増加</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q1,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q1,  5 %> 2　</label>
+      <label><%= form.radio_button :q1, 10 %> 3　</label>
+      <label><%= form.radio_button :q1, 15 %> 4　</label>
+      <label><%= form.radio_button :q1, 20 %> 5　</label>
+      <label><%= form.radio_button :q1, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q2 %>. 心臓のドキドキ感</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q2,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q2,  5 %> 2　</label>
+      <label><%= form.radio_button :q2, 10 %> 3　</label>
+      <label><%= form.radio_button :q2, 15 %> 4　</label>
+      <label><%= form.radio_button :q2, 20 %> 5　</label>
+      <label><%= form.radio_button :q2, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q3 %>. 脈拍の増加</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q3,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q3,  5 %> 2　</label>
+      <label><%= form.radio_button :q3, 10 %> 3　</label>
+      <label><%= form.radio_button :q3, 15 %> 4　</label>
+      <label><%= form.radio_button :q3, 20 %> 5　</label>
+      <label><%= form.radio_button :q3, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q4 %>. 汗の量の増加</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q4,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q4,  5 %> 2　</label>
+      <label><%= form.radio_button :q4, 10 %> 3　</label>
+      <label><%= form.radio_button :q4, 15 %> 4　</label>
+      <label><%= form.radio_button :q4, 20 %> 5　</label>
+      <label><%= form.radio_button :q4, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q5 %>. 呼吸スピードの増加</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q5,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q5,  5 %> 2　</label>
+      <label><%= form.radio_button :q5, 10 %> 3　</label>
+      <label><%= form.radio_button :q5, 15 %> 4　</label>
+      <label><%= form.radio_button :q5, 20 %> 5　</label>
+      <label><%= form.radio_button :q5, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q6 %>. 首・肩・腰のコリ、痛み</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q6,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q6,  5 %> 2　</label>
+      <label><%= form.radio_button :q6, 10 %> 3　</label>
+      <label><%= form.radio_button :q6, 15 %> 4　</label>
+      <label><%= form.radio_button :q6, 20 %> 5　</label>
+      <label><%= form.radio_button :q6, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q7 %>. アゴ周辺の痛み、こわばり感</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q7,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q7,  5 %> 2　</label>
+      <label><%= form.radio_button :q7, 10 %> 3　</label>
+      <label><%= form.radio_button :q7, 15 %> 4　</label>
+      <label><%= form.radio_button :q7, 20 %> 5　</label>
+      <label><%= form.radio_button :q7, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q8 %>. 肌の赤み、荒れ、発疹</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q8,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q8,  5 %> 2　</label>
+      <label><%= form.radio_button :q8, 10 %> 3　</label>
+      <label><%= form.radio_button :q8, 15 %> 4　</label>
+      <label><%= form.radio_button :q8, 20 %> 5　</label>
+      <label><%= form.radio_button :q8, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q9 %>. 頭痛</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q9,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q9,  5 %> 2　</label>
+      <label><%= form.radio_button :q9, 10 %> 3　</label>
+      <label><%= form.radio_button :q9, 15 %> 4　</label>
+      <label><%= form.radio_button :q9, 20 %> 5　</label>
+      <label><%= form.radio_button :q9, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q10 %>. 手足の冷え</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q10,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q10,  5 %> 2　</label>
+      <label><%= form.radio_button :q10, 10 %> 3　</label>
+      <label><%= form.radio_button :q10, 15 %> 4　</label>
+      <label><%= form.radio_button :q10, 20 %> 5　</label>
+      <label><%= form.radio_button :q10, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q11 %>. 胸が締め付けられるような感覚</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q11,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q11,  5 %> 2　</label>
+      <label><%= form.radio_button :q11, 10 %> 3　</label>
+      <label><%= form.radio_button :q11, 15 %> 4　</label>
+      <label><%= form.radio_button :q11, 20 %> 5　</label>
+      <label><%= form.radio_button :q11, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q12 %>. 吐き気</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q12,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q12,  5 %> 2　</label>
+      <label><%= form.radio_button :q12, 10 %> 3　</label>
+      <label><%= form.radio_button :q12, 15 %> 4　</label>
+      <label><%= form.radio_button :q12, 20 %> 5　</label>
+      <label><%= form.radio_button :q12, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q13 %>. 下痢または便秘</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q13,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q13,  5 %> 2　</label>
+      <label><%= form.radio_button :q13, 10 %> 3　</label>
+      <label><%= form.radio_button :q13, 15 %> 4　</label>
+      <label><%= form.radio_button :q13, 20 %> 5　</label>
+      <label><%= form.radio_button :q13, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q14 %>. 胃の痛み、不快感</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q14,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q14,  5 %> 2　</label>
+      <label><%= form.radio_button :q14, 10 %> 3　</label>
+      <label><%= form.radio_button :q14, 15 %> 4　</label>
+      <label><%= form.radio_button :q14, 20 %> 5　</label>
+      <label><%= form.radio_button :q14, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q15 %>. 爪を噛む</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q15,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q15,  5 %> 2　</label>
+      <label><%= form.radio_button :q15, 10 %> 3　</label>
+      <label><%= form.radio_button :q15, 15 %> 4　</label>
+      <label><%= form.radio_button :q15, 20 %> 5　</label>
+      <label><%= form.radio_button :q15, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q16 %>. 顔や手足のけいれん</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q16,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q16,  5 %> 2　</label>
+      <label><%= form.radio_button :q16, 10 %> 3　</label>
+      <label><%= form.radio_button :q16, 15 %> 4　</label>
+      <label><%= form.radio_button :q16, 20 %> 5　</label>
+      <label><%= form.radio_button :q16, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q17 %>. 口が乾いたり、喉が詰まったような感じ</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q17,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q17,  5 %> 2　</label>
+      <label><%= form.radio_button :q17, 10 %> 3　</label>
+      <label><%= form.radio_button :q17, 15 %> 4　</label>
+      <label><%= form.radio_button :q17, 20 %> 5　</label>
+      <label><%= form.radio_button :q17, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q18 %>. 風邪を引く回数の増加</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q18,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q18,  5 %> 2　</label>
+      <label><%= form.radio_button :q18, 10 %> 3　</label>
+      <label><%= form.radio_button :q18, 15 %> 4　</label>
+      <label><%= form.radio_button :q18, 20 %> 5　</label>
+      <label><%= form.radio_button :q18, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q19 %>. イキイキした感覚の低下</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q19,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q19,  5 %> 2　</label>
+      <label><%= form.radio_button :q19, 10 %> 3　</label>
+      <label><%= form.radio_button :q19, 15 %> 4　</label>
+      <label><%= form.radio_button :q19, 20 %> 5　</label>
+      <label><%= form.radio_button :q19, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q20 %>. つい食べ過ぎてしまう頻度</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q20,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q20,  5 %> 2　</label>
+      <label><%= form.radio_button :q20, 10 %> 3　</label>
+      <label><%= form.radio_button :q20, 15 %> 4　</label>
+      <label><%= form.radio_button :q20, 20 %> 5　</label>
+      <label><%= form.radio_button :q20, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q21 %>. 希望が無いような感覚</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q21,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q21,  5 %> 2　</label>
+      <label><%= form.radio_button :q21, 10 %> 3　</label>
+      <label><%= form.radio_button :q21, 15 %> 4　</label>
+      <label><%= form.radio_button :q21, 20 %> 5　</label>
+      <label><%= form.radio_button :q21, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q22 %>. お酒を飲む頻度</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q22,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q22,  5 %> 2　</label>
+      <label><%= form.radio_button :q22, 10 %> 3　</label>
+      <label><%= form.radio_button :q22, 15 %> 4　</label>
+      <label><%= form.radio_button :q22, 20 %> 5　</label>
+      <label><%= form.radio_button :q22, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q23 %>. タバコを吸う頻度</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q23,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q23,  5 %> 2　</label>
+      <label><%= form.radio_button :q23, 10 %> 3　</label>
+      <label><%= form.radio_button :q23, 15 %> 4　</label>
+      <label><%= form.radio_button :q23, 20 %> 5　</label>
+      <label><%= form.radio_button :q23, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q24 %>. 買い物をする頻度</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q24,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q24,  5 %> 2　</label>
+      <label><%= form.radio_button :q24, 10 %> 3　</label>
+      <label><%= form.radio_button :q24, 15 %> 4　</label>
+      <label><%= form.radio_button :q24, 20 %> 5　</label>
+      <label><%= form.radio_button :q24, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q25 %>. 市販薬を買う頻度</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q25,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q25,  5 %> 2　</label>
+      <label><%= form.radio_button :q25, 10 %> 3　</label>
+      <label><%= form.radio_button :q25, 15 %> 4　</label>
+      <label><%= form.radio_button :q25, 20 %> 5　</label>
+      <label><%= form.radio_button :q25, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q26 %>. ガッカリした気分</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q26,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q26,  5 %> 2　</label>
+      <label><%= form.radio_button :q26, 10 %> 3　</label>
+      <label><%= form.radio_button :q26, 15 %> 4　</label>
+      <label><%= form.radio_button :q26, 20 %> 5　</label>
+      <label><%= form.radio_button :q26, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q27 %>. 緊張感・不安感の増加</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q27,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q27,  5 %> 2　</label>
+      <label><%= form.radio_button :q27, 10 %> 3　</label>
+      <label><%= form.radio_button :q27, 15 %> 4　</label>
+      <label><%= form.radio_button :q27, 20 %> 5　</label>
+      <label><%= form.radio_button :q27, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q28 %>. イライラ感の増加</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q28,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q28,  5 %> 2　</label>
+      <label><%= form.radio_button :q28, 10 %> 3　</label>
+      <label><%= form.radio_button :q28, 15 %> 4　</label>
+      <label><%= form.radio_button :q28, 20 %> 5　</label>
+      <label><%= form.radio_button :q28, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q29 %>. クヨクヨした考え</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q29,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q29,  5 %> 2　</label>
+      <label><%= form.radio_button :q29, 10 %> 3　</label>
+      <label><%= form.radio_button :q29, 15 %> 4　</label>
+      <label><%= form.radio_button :q29, 20 %> 5　</label>
+      <label><%= form.radio_button :q29, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q30 %>. じれったい気持ち</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q30,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q30,  5 %> 2　</label>
+      <label><%= form.radio_button :q30, 10 %> 3　</label>
+      <label><%= form.radio_button :q30, 15 %> 4　</label>
+      <label><%= form.radio_button :q30, 20 %> 5　</label>
+      <label><%= form.radio_button :q30, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q31 %>. 落ち込んだ感覚</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q31,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q31,  5 %> 2　</label>
+      <label><%= form.radio_button :q31, 10 %> 3　</label>
+      <label><%= form.radio_button :q31, 15 %> 4　</label>
+      <label><%= form.radio_button :q31, 20 %> 5　</label>
+      <label><%= form.radio_button :q31, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q32 %>. 性的関心の減少</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q32,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q32,  5 %> 2　</label>
+      <label><%= form.radio_button :q32, 10 %> 3　</label>
+      <label><%= form.radio_button :q32, 15 %> 4　</label>
+      <label><%= form.radio_button :q32, 20 %> 5　</label>
+      <label><%= form.radio_button :q32, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q33 %>. 怒りの増加</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q33,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q33,  5 %> 2　</label>
+      <label><%= form.radio_button :q33, 10 %> 3　</label>
+      <label><%= form.radio_button :q33, 15 %> 4　</label>
+      <label><%= form.radio_button :q33, 20 %> 5　</label>
+      <label><%= form.radio_button :q33, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q34 %>. よく眠れない</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q34,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q34,  5 %> 2　</label>
+      <label><%= form.radio_button :q34, 10 %> 3　</label>
+      <label><%= form.radio_button :q34, 15 %> 4　</label>
+      <label><%= form.radio_button :q34, 20 %> 5　</label>
+      <label><%= form.radio_button :q34, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q35 %>. もの忘れ</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q35,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q35,  5 %> 2　</label>
+      <label><%= form.radio_button :q35, 10 %> 3　</label>
+      <label><%= form.radio_button :q35, 15 %> 4　</label>
+      <label><%= form.radio_button :q35, 20 %> 5　</label>
+      <label><%= form.radio_button :q35, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q36 %>. 嫌な記憶を思い出す</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q36,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q36,  5 %> 2　</label>
+      <label><%= form.radio_button :q36, 10 %> 3　</label>
+      <label><%= form.radio_button :q36, 15 %> 4　</label>
+      <label><%= form.radio_button :q36, 20 %> 5　</label>
+      <label><%= form.radio_button :q36, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q37 %>. 落ち着かない感覚</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q37,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q37,  5 %> 2　</label>
+      <label><%= form.radio_button :q37, 10 %> 3　</label>
+      <label><%= form.radio_button :q37, 15 %> 4　</label>
+      <label><%= form.radio_button :q37, 20 %> 5　</label>
+      <label><%= form.radio_button :q37, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q38 %>. 集中できない</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q38,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q38,  5 %> 2　</label>
+      <label><%= form.radio_button :q38, 10 %> 3　</label>
+      <label><%= form.radio_button :q38, 15 %> 4　</label>
+      <label><%= form.radio_button :q38, 20 %> 5　</label>
+      <label><%= form.radio_button :q38, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q39 %>. 泣きたくなるような気持ちになる</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q39,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q39,  5 %> 2　</label>
+      <label><%= form.radio_button :q39, 10 %> 3　</label>
+      <label><%= form.radio_button :q39, 15 %> 4　</label>
+      <label><%= form.radio_button :q39, 20 %> 5　</label>
+      <label><%= form.radio_button :q39, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-4 text-left">
+      <strong><%= form.label :q40 %>. 仕事や用事を休みがちになる</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q40,  0, {checked: true} %> 1　</label>
+      <label><%= form.radio_button :q40,  5 %> 2　</label>
+      <label><%= form.radio_button :q40, 10 %> 3　</label>
+      <label><%= form.radio_button :q40, 15 %> 4　</label>
+      <label><%= form.radio_button :q40, 20 %> 5　</label>
+      <label><%= form.radio_button :q40, 25 %> 6　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="actions col-md-4 offset-md-4 text-center">
+      <%= form.submit value: "診断", class: "btn btn-primary rounded-0" %>
+    </div>
+  </div>
+<% end %>
+
+<br>
+<br>
+
+<div class="row">
+  <div class="col-md-4 offset-md-4 text-center">
+    <%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary rounded-0" %>
+  </div>
+</div>

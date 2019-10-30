@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4 offset-md-4"><h3 class="text-center">ストレス計測(簡易)</h3></div>
+  <div class="col-md-4 offset-md-4"><h3 class="text-center">ストレス計測（簡易版）</h3></div>
 </div>
 
 <br>
@@ -8,78 +8,126 @@
 <%= form_with(model: @pss4, local: true) do |form| %>
 
   <% if @pss4.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@pss4.errors.count, "件") %>のエラーがあります</h2>
-
-      <ul>
-      <% @pss4.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div id="error_explanation" class="row">
+      <div class="col-md-6 offset-md-3 text-left alert alert-danger rounded-0" role="alert">
+        <strong class="alert-heading"><%= pluralize(@pss4.errors.count, "件") %>のエラーがあります</strong>
+        <ul class="mb-0">
+          <% @pss4.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
+    <br>
   <% end %>
 
   <div class="row">
-    <div class="col-md-4 offset-md-4"><strong class="text-center">１：全くない 〜 ５：とてもよくある</strong></div>
+    <div class="col-md-4 offset-md-4 text-center"><strong>〈 １：全くない 〜 ５：とてもよくある 〉</strong></div>
   </div>
 
   <br>
   <br>
 
-  <div class="field">
-    <strong><%= form.label :q1, class: "form-check-label" %>. 最近、「人生における重要な問題を、自分ではコントロールできそうにない」と感じることが多い。</strong>
-    <br>
-    <label><%= form.radio_button :q1,  0 %> 1　</label>
-    <label><%= form.radio_button :q1, 10 %> 2　</label>
-    <label><%= form.radio_button :q1, 15 %> 3　</label>
-    <label><%= form.radio_button :q1, 20 %> 4　</label>
-    <label><%= form.radio_button :q1, 25 %> 5　</label>
+  <div class="row">
+    <div class="col-md-10 offset-md-2 text-left">
+      <strong><%= form.label :q1, class: "form-check-label" %>. 最近、「人生における重要な問題を、自分ではコントロールできそうにない」と感じることが多い。</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q1,  0 %> 1　</label>
+      <label><%= form.radio_button :q1, 10 %> 2　</label>
+      <label><%= form.radio_button :q1, 15 %> 3　</label>
+      <label><%= form.radio_button :q1, 20 %> 4　</label>
+      <label><%= form.radio_button :q1, 25 %> 5　</label>
+    </div>
   </div>
 
-  <br>
-
-  <div class="field">
-    <strong><%= form.label :q2 %>. 最近、「自分は個人的な問題をうまく処理できている」と感じることが多い。</strong>
-    <br>
-    <label><%= form.radio_button :q2, 25 %> 1　</label>
-    <label><%= form.radio_button :q2, 20 %> 2　</label>
-    <label><%= form.radio_button :q2, 15 %> 3　</label>
-    <label><%= form.radio_button :q2, 10 %> 4　</label>
-    <label><%= form.radio_button :q2,  0 %> 5　</label>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
   </div>
 
+  <div class="row">
+    <div class="col-md-10 offset-md-2 text-left">
+      <strong><%= form.label :q2 %>. 最近、「自分は個人的な問題をうまく処理できている」と感じることが多い。</strong>
+    </div>
+  </div>
   <br>
-
-  <div class="field">
-    <strong><%= form.label :q3 %>. 最近、「人生がうまく進んでいるなぁ」と感じることが多い。</strong>
-    <br>
-    <label><%= form.radio_button :q3, 25 %> 1　</label>
-    <label><%= form.radio_button :q3, 20 %> 2　</label>
-    <label><%= form.radio_button :q3, 15 %> 3　</label>
-    <label><%= form.radio_button :q3, 10 %> 4　</label>
-    <label><%= form.radio_button :q3,  0 %> 5　</label>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q2, 25 %> 1　</label>
+      <label><%= form.radio_button :q2, 20 %> 2　</label>
+      <label><%= form.radio_button :q2, 15 %> 3　</label>
+      <label><%= form.radio_button :q2, 10 %> 4　</label>
+      <label><%= form.radio_button :q2,  0 %> 5　</label>
+    </div>
   </div>
 
-  <br>
-
-  <div class="field">
-    <strong><%= form.label :q4 %>. 最近、「困難が山積みになって乗り越えるのが無理だ」と感じることが多い。</strong>
-    <br>
-    <label><%= form.radio_button :q4, 0  %> 1 </label>
-    <label><%= form.radio_button :q4, 10 %> 2 </label>
-    <label><%= form.radio_button :q4, 15 %> 3 </label>
-    <label><%= form.radio_button :q4, 20 %> 4 </label>
-    <label><%= form.radio_button :q4, 25 %> 5 </label>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
   </div>
 
+  <div class="row">
+    <div class="col-md-10 offset-md-2 text-left">
+      <strong><%= form.label :q3 %>. 最近、「人生がうまく進んでいるなぁ」と感じることが多い。</strong>
+    </div>
+  </div>
   <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q3, 25 %> 1　</label>
+      <label><%= form.radio_button :q3, 20 %> 2　</label>
+      <label><%= form.radio_button :q3, 15 %> 3　</label>
+      <label><%= form.radio_button :q3, 10 %> 4　</label>
+      <label><%= form.radio_button :q3,  0 %> 5　</label>
+    </div>
+  </div>
 
-  <div class="actions">
-    <%= form.submit value: "診断", class: "btn btn-primary" %>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 offset-md-2 text-left">
+      <strong><%= form.label :q4 %>. 最近、「困難が山積みになって乗り越えるのが無理だ」と感じることが多い。</strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <label><%= form.radio_button :q4, 0  %> 1　</label>
+      <label><%= form.radio_button :q4, 10 %> 2　</label>
+      <label><%= form.radio_button :q4, 15 %> 3　</label>
+      <label><%= form.radio_button :q4, 20 %> 4　</label>
+      <label><%= form.radio_button :q4, 25 %> 5　</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="actions col-md-4 offset-md-4 text-center">
+      <%= form.submit value: "診断", class: "btn btn-primary rounded-0" %>
+    </div>
   </div>
 <% end %>
 
 <br>
 <br>
 
-<%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary" %>
+<div class="row">
+  <div class="col-md-4 offset-md-4 text-center">
+    <%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary rounded-0" %>
+  </div>
+</div>

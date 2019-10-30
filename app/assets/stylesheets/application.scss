@@ -125,15 +125,58 @@ transform: rotate(-45deg);
   position: relative;
 }
 
-.PieChart {
+.PieChart1 {
    position: absolute;
+   font-size: 2vw;
    top: 0;
    left: 0;
    margin: auto;
    right: 0;
    margin: auto;
    text-align: center;
-   top: 53%;
+   top: 50%;
+   -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+
+.PieChart2 {
+   position: absolute;
+   font-size: 2vw;
+   top: 0;
+   left: 0;
+   margin: auto;
+   right: 0;
+   margin: auto;
+   text-align: center;
+   top: 60%;
+   -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+
+.PieChart3 {
+   position: absolute;
+   font-size: 2vw;
+   top: 0;
+   left: 0;
+   margin: auto;
+   right: 0;
+   margin: auto;
+   text-align: center;
+   top: 56%;
+   -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+
+.PieChart4 {
+   position: absolute;
+   font-size: 2vw;
+   top: 0;
+   left: 0;
+   margin: auto;
+   right: 0;
+   margin: auto;
+   text-align: center;
+   top: 65%;
    -webkit-transform: translateY(-50%);
    transform: translateY(-50%);
 }

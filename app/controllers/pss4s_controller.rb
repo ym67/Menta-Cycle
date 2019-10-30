@@ -1,4 +1,5 @@
 class Pss4sController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_pss4, only: [:show]
 
   def show
@@ -18,12 +19,11 @@ class Pss4sController < ApplicationController
       if Sss.where(user_id: current_user.id).where(created_at: @pss4.created_at.in_time_zone.all_day).length > 0
         Sss.where(user_id: current_user.id).where(created_at: @pss4.created_at.in_time_zone.all_day).last.destroy
       end
-      redirect_to @pss4, notice: '診断終了'
+      redirect_to @pss4
     else
       render :new
     end
   end
-
 
   private
 

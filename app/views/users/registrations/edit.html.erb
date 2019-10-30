@@ -1,59 +1,128 @@
-<h2>アカウント編集</h2>
+<div class="row d-flex align-items-center">
+  <div class="col-md-8 offset-md-2 text-center mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-4 offset-md-4"><h4 class="text-center">アカウント情報編集</h4></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
+          <%= render "users/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :name %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザ名", class: "form-control rounded-0" %>
+            </div>
+          </div>
 
-  <div class="field">
+          <br>
 
-    <div class="field">
-      <%= form.label :name %><br />
-      <%= form.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザ名" %>
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :gender %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <label><%= form.radio_button :gender, true %> 男性　</label>
+              <label><%= form.radio_button :gender, false %> 女性　</label>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :age %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.select :age, [["10代", 10], ["20代", 20], ["30代", 30], ["40代", 40], ["50代", 50], ["60代", 60], ["70代", 70], ["80代", 80], ["90代", 90]] %>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :email %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "address@example.com", class: "form-control rounded-0" %>
+            </div>
+          </div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :password %></strong><br>
+              <strong>（※変更しない場合は空白のままにして下さい）</strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control rounded-0" %>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :password_confirmation %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上(確認)", class: "form-control rounded-0" %>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :current_password %></strong><br>
+              <strong>（※パスワードを変更するには、現在のパスワードを入力する必要があります)</strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.password_field :current_password, autocomplete: "current-password", class: "form-control rounded-0" %>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="actions">
+            <%= form.submit "更新", class: "btn btn-primary rounded-0" %>
+          </div>
+          <br>
+        <% end %>
+
+      </div>
     </div>
-
-    <div class="field">
-      <%= form.label :gender %><br />
-      <label><%= form.radio_button :gender, true %>男性</label>
-      <label><%= form.radio_button :gender, false %>女性</label>
-    </div>
-
-    <div class="field">
-      <%= form.label :age %><br />
-      <%= form.select :age, [["10代", 10], ["20代", 20], ["30代", 30], ["40代", 40], ["50代", 50], ["60代", 60], ["70代", 70], ["80代", 80], ["90代", 90]] %>
-    </div>
-
-    <%= form.label :email %><br />
-    <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "address@example.com" %>
   </div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+<!-- <#%= button_to "退会する", registration_path(resource_name), data: { confirm: "退会すると全てのデータが失われます。よろしいですか?" }, method: :delete %> -->
 
-  <div class="field">
-    <%= form.label :password %> <i>(変更しない場合は空白のままにして下さい)</i><br />
-    <%= form.password_field :password, autocomplete: "new-password", placeholder: "6文字以上" %>
-    <% if @minimum_password_length %>
-      (<%= @minimum_password_length %>文字以上)
-    <% end %><br />
-  </div>
+<br>
+<br>
 
-  <div class="field">
-    <%= form.label :password_confirmation %><br />
-    <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上(確認)" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :current_password %> <i>(パスワードを変更するには、現在のパスワードを入力する必要があります)</i><br />
-    <%= form.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "更新" %>
-  </div>
-<% end %>
-
-<h3>退会する</h3>
-
-<p><%= button_to "退会する", registration_path(resource_name), data: { confirm: "退会すると全てのデータが失われます。よろしいですか?" }, method: :delete %></p>
-
-<%= link_to "戻る", :back %>
+<div class="row mx-auto text-center">
+  <div class="col-md-4 offset-md-4 mx-auto text-center"><%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary rounded-0" %></div>
+</div>

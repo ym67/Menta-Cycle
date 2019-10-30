@@ -10,17 +10,11 @@
   <div class="chart_price">
     <canvas id="myPieChart"></canvas>
     <% if @dailry_stress_score.class == Integer %>
-      <% if @dailry_stress_score > 0 %>
-        <p class="PieChart"><%= @dailry_stress_score %>%</p>
-      <% else %>
-        <p class="PieChart">ノーストレス!</p>
-      <% end %>
+      <p class="PieChart1"><strong>ストレス度</strong></p>
+      <p class="PieChart2"><%= @dailry_stress_score %>%</p>
     <% else %>
-      <% if @dailry_stress_score.score > 0 %>
-        <p class="PieChart"><%= (@dailry_stress_score.score.to_f) / 10 %>%</p>
-      <% else %>
-        <p class="PieChart">ノーストレス!</p>
-      <% end %>
+      <p class="PieChart3"><strong>ストレス度</strong></p>
+      <p class="PieChart4"><%= (@dailry_stress_score.score.to_f) / 10 %>%</p>
     <% end %>
   </div>
 
@@ -151,5 +145,5 @@
 <br>
 
 <div class="row">
-  <div class="col-md-4 offset-md-4 text-center"><%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary" %></div>
+  <div class="col-md-4 offset-md-4 text-center"><%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary rounded-0" %></div>
 </div>

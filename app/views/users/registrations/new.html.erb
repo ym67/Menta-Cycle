@@ -1,45 +1,112 @@
-<h2>アカウント作成</h2>
+<div class="row d-flex align-items-center">
+  <div class="col-md-8 offset-md-2 text-center mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-4 offset-md-4"><h4 class="text-center">アカウント作成</h4></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
+          <%= render "users/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :name %><strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.text_field :name, autofocus: true, autocomplete: "name", placeholder: "お名前", class: "form-control rounded-0" %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= form.label :name %><br />
-    <%= form.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザ名" %>
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :gender %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <label><%= form.radio_button :gender, true %> 男性　</label>
+              <label><%= form.radio_button :gender, false %> 女性　</label>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :age %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.select :age, [["10代", 10], ["20代", 20], ["30代", 30], ["40代", 40], ["50代", 50], ["60代", 60], ["70代", 70], ["80代", 80], ["90代", 90]], class: "form-control rounded-0" %>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :email %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "address@example.com", class: "form-control rounded-0" %>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :password %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control rounded-0" %>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+              <strong><%= form.label :password_confirmation %></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+              <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上（確認）", class: "form-control rounded-0" %>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="actions">
+            <%= form.submit "登録", class: "btn btn-primary rounded-0" %>
+          </div>
+          <br>
+          <% end %>
+
+          <% if controller_name != 'sessions' %>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8"><hr></div>
+              <div class="col-md-2"></div>
+            </div>
+            <%= link_to "既にアカウントをお持ちの方はこちら", new_session_path(resource_name), class: "btn btn-outline-primary rounded-0" %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :gender %><br />
-    <label><%= form.radio_button :gender, true %>男性</label>
-    <label><%= form.radio_button :gender, false %>女性</label>
-  </div>
-
-  <div class="field">
-    <%= form.label :age %><br />
-    <%= form.select :age, [["10代", 10], ["20代", 20], ["30代", 30], ["40代", 40], ["50代", 50], ["60代", 60], ["70代", 70], ["80代", 80], ["90代", 90]] %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %><br />
-    <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "address@example.com" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <% if @minimum_password_length %>
-    (<%= @minimum_password_length %>文字以上)
-    <% end %><br />
-    <%= form.password_field :password, autocomplete: "new-password", placeholder: "6文字以上" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation %><br />
-    <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上(確認)" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "送信" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<!-- <#%= render "users/shared/links" %> -->

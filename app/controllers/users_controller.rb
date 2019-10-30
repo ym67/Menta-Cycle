@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user #, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_user
   before_action :last_time_big5_score, only: [:show, :diary_data]
   before_action :this_time_big5_score, only: [:show, :diary_data]
   before_action :my_stress_diaries, only: [:show, :diary_data]
-  before_action :authenticate_user! #, only: [:new, :edit, :update, :destroy]
 
   def show
     @dailry_data = StressDiary.where(user_id: current_user).order(created_at: :desc) + Pss4.where(user_id: current_user) + Sss.where(user_id: current_user)
@@ -16,8 +16,13 @@ class UsersController < ApplicationController
         total_scores += score[0]
       end
     end
-    @average_score = (total_scores.to_f / @stress_scores.length).round
-    @total_diary = StressDiary.where(user_id: current_user)
+    begin
+      @average_score = (total_scores.to_f / @stress_scores.length).round
+      @total_diary = StressDiary.where(user_id: current_user)
+    rescue
+      @average_score = 0
+      @total_diary = []
+    end
   end
 
   def dailry_data

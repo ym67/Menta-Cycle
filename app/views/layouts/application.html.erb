@@ -36,12 +36,12 @@
         <% end %>
       </header>
 
-      <!-- フラッシュメッセージ -->
+      <!-- フラッシュメッセージ <p class="alert alert-error"></p <p class="alert alert-notice"></p>>-->
       <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
+          <p class="alert alert-primary alert-notice rounded-0"><%= notice %></p>
       <% end %>
       <% if alert %>
-        <p class="alert alert-error"><%= alert %></p>
+          <p class="alert alert-danger alert-error rounded-0"><%= alert %></p>
       <% end %>
 
       <!-- メインコンテンツ -->
@@ -56,10 +56,10 @@
       <!-- フッター -->
       <footer id="footer">
         <div class="container-fluid">
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="col-md-3"></div>
             <div class="col-md-6">Copyright © 2019 Yusuke Matsuda All Rights Reserved.</div>
-            <div class="col-md-3"><%= link_to 'お問い合わせ', new_contact_path %></div>
+            <div class="col-md-3"><%= link_to 'お問い合わせ', new_contact_path, class: "btn btn-outline-primary rounded-0"  %></div>
           </div>
         </div>
       </footer>

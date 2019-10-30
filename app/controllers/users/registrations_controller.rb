@@ -13,6 +13,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
+  # def create
+  #   build_resource(sign_up_params)
+  #   # skip_confirmationはconfirmed_atに現在時刻（UTC）を入れるメソッド
+  #   resource.skip_confirmation!
+  #   resource.save
+  # end
 
   # GET /resource/edit
   # def edit

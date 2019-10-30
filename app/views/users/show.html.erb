@@ -7,16 +7,26 @@
 
 <div class="row d-flex align-items-center">
   <div class="col-md-5 text-center mx-auto">
-  <div class="card">
+  <div class="card rounded-0">
     <div class="card-header">
       <strong><%= link_to current_user.name, edit_user_registration_path(current_user) %>さんのデータ</strong>
     </div>
     <div class="card_body float-left text-left">
       <p class="m-4">ストレスを計測した日数：合計<strong><%= @stress_scores.length %></strong>日</p>
-      <p class="m-4">平均ストレス度：<strong><%= @average_score %></strong>%(計測する→<%= link_to '簡易版', new_pss4_path %> | <%= link_to '詳細版', new_sss_path %>)</p>
-      <p class="m-4">ストレスダイアリー投稿数：<strong><%= @total_diary.length %></strong>件(<%= link_to '一覧', stress_diaries_path %>)</p>
+      <p class="m-4">平均ストレス度：<strong><%= @average_score %></strong>%</p>
+      <p class="m-4">ストレスダイアリー投稿数：<strong><%= @total_diary.length %></strong>件（<%= link_to '一覧', stress_diaries_path %>）</p>
     </div>
   </div>
+  <br>
+  <hr>
+  <strong>ストレスを計測する</strong>
+  <p></p>
+  <p><%= link_to '簡易版', new_pss4_path, class: "btn btn-primary rounded-0" %> | <%= link_to '詳細版', new_sss_path, class: "btn btn-primary rounded-0" %></p>
+  <hr>
+  <strong>ストレスダイアリーを投稿する</strong>
+  <p></p>
+  <p><%= link_to '新規投稿', new_stress_diary_path, class: "text-center btn btn-primary rounded-0" %></p>
+  <hr>
   </div>
 
 <div class="col-md-7 text-center mx-auto">
@@ -35,7 +45,7 @@ var myRadarChart = new Chart(ctx, {
             data: [<%= @this_time_conscientiousness %>, <%= @this_time_agreeableness %>, <%= @this_time_neuroticism %>, <%= @this_time_openness_to_experience %>, <%= @this_time_extraversion %>],
             backgroundColor: 'RGBA(0,102,255,0.5)',
             borderColor: 'RGBA(0,102,255,1)',
-            borderWidth: 2,
+            borderWidth: 1,
             pointBackgroundColor: 'RGB(0,102,255)'
         },
         {
@@ -43,14 +53,14 @@ var myRadarChart = new Chart(ctx, {
             data: [<%= @last_time_conscientiousness %>, <%= @last_time_agreeableness %>, <%= @last_time_neuroticism %>, <%= @last_time_openness_to_experience %>, <%= @last_time_extraversion %>],
             backgroundColor: 'RGBA(51,204,255,0.5)',
             borderColor: 'RGBA(51,204,255,0.8)',
-            borderWidth: 2,
+            borderWidth: 1,
             pointBackgroundColor: 'RGB(51,204,255)'
         }]
     },
     options: {
       title: {
         display: true,
-        text: 'Big5',
+        text: 'あなたのBig5',
         fontSize: 20,
       },
       scale:{
@@ -68,7 +78,7 @@ var myRadarChart = new Chart(ctx, {
     }
 });
 </script>
-<%= link_to 'Big5を診断する', new_big5_score_path %>
+<%= link_to 'Big5を診断する', new_big5_score_path, class: "btn btn-primary rounded-0" %>
 </div>
 </div>
 
