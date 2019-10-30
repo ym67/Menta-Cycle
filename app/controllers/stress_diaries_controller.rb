@@ -40,7 +40,8 @@ class StressDiariesController < ApplicationController
 
   def destroy
     @stress_diary.destroy
-    redirect_to stress_diaries_url, notice: 'ストレスダイアリーを削除しました'
+    # redirect_to stress_diaries_url, notice: 'ストレスダイアリーを削除しました'
+    redirect_to request.referer, notice: 'ストレスダイアリーを削除しました'
   end
 
   private
