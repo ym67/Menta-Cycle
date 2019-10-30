@@ -1,18 +1,12 @@
 class SssesController < ApplicationController
-  before_action :set_sss, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @ssses = Sss.all
-  end
+  before_action :authenticate_user!
+  before_action :set_sss, only: [:show]
 
   def show
   end
 
   def new
     @sss = Sss.new
-  end
-
-  def edit
   end
 
   def create
@@ -25,23 +19,10 @@ class SssesController < ApplicationController
         if Pss4.where(user_id: current_user.id).where(created_at: @sss.created_at.in_time_zone.all_day).length > 0
           Pss4.where(user_id: current_user.id).where(created_at: @sss.created_at.in_time_zone.all_day).last.destroy
         end
-        redirect_to @sss, notice: '診断終了'
+        redirect_to @sss
       else
         render :new
       end
-  end
-
-  def update
-    if @sss.update(sss_params)
-      redirect_to @sss, notice: '更新'
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @sss.destroy
-    redirect_to ssses_url, notice: '削除'
   end
 
   private

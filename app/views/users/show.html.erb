@@ -1,11 +1,37 @@
-<h2>マイページ</h2>
-<p>アカウント名:<%= current_user.name %></p>
-<p>メールアドレス:<%= current_user.email %></p>
+<div class="row">
+  <div class="col-md-4 offset-md-4"><h3 class="text-center">マイページ</h3></div>
+</div>
 
-<%= link_to '編集', edit_user_registration_path(current_user) %>
+<br>
+<br>
 
+<div class="row d-flex align-items-center">
+  <div class="col-md-5 text-center mx-auto">
+  <div class="card rounded-0">
+    <div class="card-header">
+      <strong><%= link_to current_user.name, edit_user_registration_path(current_user) %>さんのデータ</strong>
+    </div>
+    <div class="card_body float-left text-left">
+      <p class="m-4">ストレスを計測した日数：合計<strong><%= @stress_scores.length %></strong>日</p>
+      <p class="m-4">平均ストレス度：<strong><%= @average_score %></strong>%</p>
+      <p class="m-4">ストレスダイアリー投稿数：<strong><%= @total_diary.length %></strong>件（<%= link_to '一覧', stress_diaries_path %>）</p>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <strong>ストレスを計測する</strong>
+  <p></p>
+  <p><%= link_to '簡易版', new_pss4_path, class: "btn btn-primary rounded-0" %> | <%= link_to '詳細版', new_sss_path, class: "btn btn-primary rounded-0" %></p>
+  <hr>
+  <strong>ストレスダイアリーを投稿する</strong>
+  <p></p>
+  <p><%= link_to '新規投稿', new_stress_diary_path, class: "text-center btn btn-primary rounded-0" %></p>
+  <hr>
+  </div>
+
+<div class="col-md-7 text-center mx-auto">
 <!-- Big5レーダーチャート -->
-<canvas id="myRaderChart"></canvas>
+<canvas id="myRaderChart" height="200"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
 <script>
@@ -17,41 +43,48 @@ var myRadarChart = new Chart(ctx, {
         datasets: [{
             label: '今回',
             data: [<%= @this_time_conscientiousness %>, <%= @this_time_agreeableness %>, <%= @this_time_neuroticism %>, <%= @this_time_openness_to_experience %>, <%= @this_time_extraversion %>],
-            backgroundColor: 'RGBA(225,95,150, 0.5)',
-            borderColor: 'RGBA(225,95,150, 1)',
-            borderWidth: 2,
-            pointBackgroundColor: 'RGB(46,106,177)'
+            backgroundColor: 'RGBA(0,102,255,0.5)',
+            borderColor: 'RGBA(0,102,255,1)',
+            borderWidth: 1,
+            pointBackgroundColor: 'RGB(0,102,255)'
         },
         {
             label: '前回',
             data: [<%= @last_time_conscientiousness %>, <%= @last_time_agreeableness %>, <%= @last_time_neuroticism %>, <%= @last_time_openness_to_experience %>, <%= @last_time_extraversion %>],
-            backgroundColor: 'RGBA(115,255,25, 0.5)',
-            borderColor: 'RGBA(115,255,25, 1)',
-            borderWidth: 2,
-            pointBackgroundColor: 'RGB(46,106,177)'
+            backgroundColor: 'RGBA(51,204,255,0.5)',
+            borderColor: 'RGBA(51,204,255,0.8)',
+            borderWidth: 1,
+            pointBackgroundColor: 'RGB(51,204,255)'
         }]
     },
     options: {
-        title: {
-            display: true,
-            text: 'Big5',
-            fontSize: 20
-        },
-        scale:{
-            ticks:{
-                suggestedMin: 0,
-                suggestedMax: 7,
-                stepSize: 1,
-                callback: function(value, index, values){
-                    return  value
-                }
-            }
-        },
-        responsive: true,
-        maintainAspectRatio: true
+      title: {
+        display: true,
+        text: 'あなたのBig5',
+        fontSize: 20,
+      },
+      scale:{
+        ticks:{
+          suggestedMin: 0,
+          suggestedMax: 7,
+          stepSize: 1,
+          callback: function(value, index, values){
+            return  value
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: true
     }
 });
 </script>
+<%= link_to 'Big5を診断する', new_big5_score_path, class: "btn btn-primary rounded-0" %>
+</div>
+</div>
+
+<br>
+<br>
+<br>
 
 <!-- ストレス度ラインチャート -->
 <canvas id="myLineChart"></canvas>
@@ -77,8 +110,8 @@ var myLineChart = new Chart(ctx, {
               <% end %>
             <% end %>
             ],
-            backgroundColor: 'RGBA(225,95,150, 0.5)',
-            borderColor: 'RGBA(225,95,150, 1)',
+            backgroundColor: 'RGBA(0,102,255,0.5)',
+            borderColor: 'RGBA(0,102,255,1)',
             borderWidth: 2,
             pointBackgroundColor: 'RGB(46,106,177)'
         }]
@@ -86,7 +119,7 @@ var myLineChart = new Chart(ctx, {
     options: {
         title: {
           display: true,
-          text: "ストレス度の推移",
+          text: "ストレス度の推移\n",
           fontSize: 20
         },
         legend: {
@@ -98,11 +131,14 @@ var myLineChart = new Chart(ctx, {
 });
 </script>
 
+<br>
+<br>
+
 <!-- カレンダー -->
 <%= month_calendar events: @dailry_data do |date, dailry_data| %>
   <!-- 日付 -->
   <% @date = date %>
-  <%= link_to date.strftime("%d"), dailry_data_path(para: date) %><br>
+  <%= date.strftime("%d") %><br>
   <!-- その日のストレスダイアリーの投稿数 -->
   <% todays_data = [] %>
   <% dailry_data.each do |data| %>
@@ -127,9 +163,3 @@ var myLineChart = new Chart(ctx, {
 <% end %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-
-<%= link_to '簡易ストレス計測', new_pss4_path %>
-<%= link_to '詳細ストレス計測', new_sss_path %>
-<%= link_to 'Big5診断', new_big5_score_path %>
-<%= link_to 'ストレスダイアリーを書く', new_stress_diary_path %>
-<%= link_to 'ストレスダイアリー一覧', stress_diaries_path %>

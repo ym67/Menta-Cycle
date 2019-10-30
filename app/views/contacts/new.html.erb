@@ -1,49 +1,101 @@
-<h1>お問い合わせ</h1>
+<div class="row">
+  <div class="col-md-4 offset-md-4"><h3 class="text-center">お問い合わせ</h3></div>
+</div>
+
+<br>
+<br>
 
 <%= form_with(model: @contact, local: true) do |form| %>
   <% if @contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@contact.errors.count, "件") %>のエラーがあります</h2>
-
-      <ul>
-      <% @contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div id="error_explanation" class="row">
+      <div class="col-md-6 offset-md-3 text-left alert alert-danger rounded-0" role="alert">
+        <strong class="alert-heading"><%= pluralize(@contact.errors.count, "件") %>のエラーがあります</strong>
+        <ul class="mb-0">
+          <% @contact.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
     </div>
+  </div>
+  <br>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <% if user_signed_in? %>
-      <%= form.text_field :name, placeholder: "お名前", value: current_user.name %>
-    <% else %>
-      <%= form.text_field :name, placeholder: "お名前" %>
-    <% end %>
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <strong><%= form.label :name %></strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <% if user_signed_in? %>
+        <%= form.text_field :name, class: "form-control rounded-0", placeholder: "お名前", value: current_user.name %>
+      <% else %>
+        <%= form.text_field :name, class: "form-control rounded-0", placeholder: "お名前" %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <% if user_signed_in? %>
-      <%= form.email_field :email, placeholder: "email@example.com", value: current_user.email %>
-    <% else %>
-      <%= form.email_field :email, placeholder: "email@example.com" %>
-    <% end %>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, placeholder: "お問い合わせ内容" %>
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <strong><%= form.label :email %></strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <% if user_signed_in? %>
+        <%= form.email_field :email, class: "form-control rounded-0", placeholder: "email@example.com", value: current_user.email %>
+      <% else %>
+        <%= form.email_field :email, class: "form-control rounded-0", placeholder: "email@example.com" %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit value: "送信" %>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
   </div>
 
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <strong><%= form.label :content %></strong>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+      <%= form.text_area :content, class: "form-control rounded-0", placeholder: "お問い合わせ内容" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><hr></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="actions col-md-4 offset-md-4 text-center">
+      <%= form.submit value: "送信", class: "btn btn-primary rounded-0" %>
+    </div>
+  </div>
 <% end %>
 
-<% if user_signed_in? %>
-  <%= link_to '戻る', user_path(current_user.id) %>
-<% else %>
-  <%= link_to '戻る', new_user_session_path %>
-<% end %>
+<br>
+<br>
+
+<div class="row">
+  <% if user_signed_in? %>
+    <div class="col-md-4 offset-md-4 text-center"><%= link_to '戻る', user_path(current_user.id), class: "btn btn-outline-primary rounded-0" %></div>
+  <% else %>
+    <div class="col-md-4 offset-md-4 text-center"><%= link_to '戻る', new_user_session_path, class: "btn btn-outline-primary rounded-0" %></div>
+  <% end %>
+</div>

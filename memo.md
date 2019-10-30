@@ -1,3 +1,5 @@
+# application.css初期状態(scssにリネーム前)
+```css
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -14,3 +16,4 @@
  *= require_tree .
  *= require_self
  */
+```

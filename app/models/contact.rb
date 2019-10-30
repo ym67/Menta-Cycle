@@ -5,5 +5,5 @@ class Contact < ApplicationRecord
   validates :content, length: { in: 1..2000 }
 
   # --- アソシエーション ---
-  belongs_to :user
+
 end
