@@ -78,6 +78,8 @@ var myRadarChart = new Chart(ctx, {
     }
 });
 </script>
+
+<br>
 <%= link_to 'Big5を診断する', new_big5_score_path, class: "btn btn-primary rounded-0" %>
 </div>
 </div>
@@ -95,11 +97,11 @@ var ctx = document.getElementById("myLineChart");
 var myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ["0",
+        labels: ["日付",
         <% @stress_scores.each do |score| %>
-          "<%= score[1].strftime("%Y/%m/%d") %>",
+          "<%= score[1].strftime("%y/%m/%d") %>",
         <% end %>
-        ],
+        ""],
         datasets: [{
             data: [0,
             <% @stress_scores.each do |score| %>
@@ -109,7 +111,7 @@ var myLineChart = new Chart(ctx, {
                 <%= score[0] %>,
               <% end %>
             <% end %>
-            ],
+            0],
             backgroundColor: 'RGBA(0,102,255,0.5)',
             borderColor: 'RGBA(0,102,255,1)',
             borderWidth: 2,
