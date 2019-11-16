@@ -1,9 +1,84 @@
-<div class="row d-flex align-items-center">
-  <div class="col-md-8 offset-md-2 text-center mx-auto">
+<div class="row">
+  <div class="col-md-6">
+
+    <div class="row">
+      <div class="col-md-11 offset-md-1 text-left">
+        <u><h1>Menta Cycle</h1></u>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-10 offset-md-2 text-left">
+        <strong><font color="#666666">今のストレス度をサクッとチェック</font></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 offset-md-2 text-left">
+        <strong><font color="#666666">スコアの推移で自分のメンタルの傾向を知ろう</font></strong>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <br>
+
+        <!-- ストレス度ラインチャート -->
+        <canvas id="myLineChart"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+        <script>
+          var ctx = document.getElementById("myLineChart");
+          var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: [
+                "日付",
+                "<%= (DateTime.current - 6.days).strftime("%y/%m/%d") %>",
+                "<%= (DateTime.current - 5.days).strftime("%y/%m/%d") %>",
+                "<%= (DateTime.current - 4.days).strftime("%y/%m/%d") %>",
+                "<%= (DateTime.current - 3.days).strftime("%y/%m/%d") %>",
+                "<%= (DateTime.current - 2.days).strftime("%y/%m/%d") %>",
+                "<%= (DateTime.current - 1.days).strftime("%y/%m/%d") %>",
+                "<%= (DateTime.current).strftime("%y/%m/%d") %>",
+                ""
+              ],
+              datasets: [{
+                data: [0, 60, 70, 65, 75, 70, 55, 60, 0],
+                backgroundColor: 'RGBA(0,102,255,0.5)',
+                borderColor: 'RGBA(0,102,255,1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'RGB(46,106,177)'
+              }]
+            },
+            options: {
+              legend: {
+              display: false
+              },
+              responsive: true,
+              maintainAspectRatio: true
+            }
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+        <br>
+
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="col-md-6 text-center mx-auto">
     <div class="card rounded-0">
       <div class="card-header">
         <div class="row">
-          <div class="col-md-4 offset-md-4"><h4 class="text-center">アカウント作成</h4></div>
+          <div class="col-md-8 offset-md-2"><h5 class="text-center"><strong>アカウント作成</strong></h5></div>
         </div>
       </div>
       <div class="card-body">
@@ -16,7 +91,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 offset-md-4 text-center">
+            <div class="col-md-8 offset-md-2 text-center">
               <%= form.text_field :name, autofocus: true, autocomplete: "name", placeholder: "お名前", class: "form-control rounded-0" %>
             </div>
           </div>
@@ -29,7 +104,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 offset-md-4 text-center">
+            <div class="col-md-8 offset-md-2 text-center">
               <label><%= form.radio_button :gender, true %> 男性　</label>
               <label><%= form.radio_button :gender, false %> 女性　</label>
             </div>
@@ -43,8 +118,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 offset-md-4 text-center">
-              <%= form.select :age, [["10代", 10], ["20代", 20], ["30代", 30], ["40代", 40], ["50代", 50], ["60代", 60], ["70代", 70], ["80代", 80], ["90代", 90]], class: "form-control rounded-0" %>
+            <div class="col-md-8 offset-md-2 text-center">
+              <%= form.select :age, [["10代", 10], ["20代", 20], ["30代", 30], ["40代", 40], ["50代", 50], ["60代", 60], ["70代", 70], ["80代", 80], ["90代", 90]], {}, class: "form-control rounded-0" %>
             </div>
           </div>
 
@@ -56,7 +131,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 offset-md-4 text-center">
+            <div class="col-md-8 offset-md-2 text-center">
               <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "address@example.com", class: "form-control rounded-0" %>
             </div>
           </div>
@@ -69,7 +144,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 offset-md-4 text-center">
+            <div class="col-md-8 offset-md-2 text-center">
               <%= form.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control rounded-0" %>
             </div>
           </div>
@@ -82,7 +157,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 offset-md-4 text-center">
+            <div class="col-md-8 offset-md-2 text-center">
               <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上（確認）", class: "form-control rounded-0" %>
             </div>
           </div>

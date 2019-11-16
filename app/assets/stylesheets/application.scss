@@ -55,8 +55,8 @@ body, #wrapper {
 // エラー関係
 .field_with_errors {
   padding: 1px;
-  background-color: Red;
-  display: table;
+  background-color: RGBA(255,0,0, 0.7);
+  display: inline-block;
 }
 
 
@@ -119,67 +119,267 @@ top:13px;
 transform: rotate(-45deg);
 }
 
+// セレクトフォーム
+#user_age, #stress_diary_stress_level, #stress_diary_duration, #stress_diary_time_4i, #stress_diary_time_5i {
+  color: #000000;
+  background-color: #FFFFFF;
+  background-clip: padding-box;
+  border: 0;
+  outline: 1px solid #ced4da;
+  outline-offset: -1px;
+}
 
 // ストレス度ドーナツチャート
 .chart_price {
   position: relative;
 }
 
+@media screen and (min-width: 0px) and (max-device-width: 400px) {
+  .PieChart1 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 62%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .PieChart2 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 71%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .PieChart3 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 80%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .PieChart4 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 90%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
+
+@media screen and (min-width: 401px) and (max-device-width: 700px) {
+  .PieChart1 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 57%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .PieChart2 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 66%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .PieChart3 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 60%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .PieChart4 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 70%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
+
+@media screen and (min-width: 701px) and (max-device-width: 950px) {
+  .PieChart1 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 52%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .PieChart2 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 61%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .PieChart3 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 56%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .PieChart4 {
+    color: #666666;
+    position: absolute;
+    font-size: 2vw;
+    top: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 65%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
+
 .PieChart1 {
-   position: absolute;
-   font-size: 2vw;
-   top: 0;
-   left: 0;
-   margin: auto;
-   right: 0;
-   margin: auto;
-   text-align: center;
-   top: 50%;
-   -webkit-transform: translateY(-50%);
-   transform: translateY(-50%);
+  color: #666666;
+  position: absolute;
+  font-size: 2vw;
+  top: 0;
+  left: 0;
+  margin: auto;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .PieChart2 {
-   position: absolute;
-   font-size: 2vw;
-   top: 0;
-   left: 0;
-   margin: auto;
-   right: 0;
-   margin: auto;
-   text-align: center;
-   top: 60%;
-   -webkit-transform: translateY(-50%);
-   transform: translateY(-50%);
+  color: #666666;
+  position: absolute;
+  font-size: 2vw;
+  top: 0;
+  left: 0;
+  margin: auto;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  top: 60%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .PieChart3 {
-   position: absolute;
-   font-size: 2vw;
-   top: 0;
-   left: 0;
-   margin: auto;
-   right: 0;
-   margin: auto;
-   text-align: center;
-   top: 56%;
-   -webkit-transform: translateY(-50%);
-   transform: translateY(-50%);
+  color: #666666;
+  position: absolute;
+  font-size: 2vw;
+  top: 0;
+  left: 0;
+  margin: auto;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .PieChart4 {
-   position: absolute;
-   font-size: 2vw;
-   top: 0;
-   left: 0;
-   margin: auto;
-   right: 0;
-   margin: auto;
-   text-align: center;
-   top: 65%;
-   -webkit-transform: translateY(-50%);
-   transform: translateY(-50%);
+  color: #666666;
+  position: absolute;
+  font-size: 2vw;
+  top: 0;
+  left: 0;
+  margin: auto;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  top: 60%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
+
 
 // フッター
 footer {
